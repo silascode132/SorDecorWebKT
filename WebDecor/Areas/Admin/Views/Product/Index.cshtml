@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Sản phẩm</h1>
+
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <a class="btn btn-success btn-sm" href="@Url.Action("Create", "Product")">Thêm sản phẩm</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã SP</th>
+                        <th>Tên SP</th>
+                        <th>Xuất xứ</th>
+                        @*<th>Thông tin</th>
+                            <th>Descriptions</th>*@
+                        <th>Giá</th>
+                        <th>Sale</th>
+                        <th>Danh mục</th>
+                        <th>Freeship</th>
+                        <th>Hình ảnh</th>
+                        <th>Số lượng</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Mã SP</th>
+                        <th>Tên SP</th>
+                        <th>Xuất xứ</th>
+                        @*<th>Thông tin</th>
+                            <th>Descriptions</th>*@
+                        <th>Giá</th>
+                        <th>Sale</th>
+                        <th>Danh mục</th>
+                        <th>Freeship</th>
+                        <th>Hình ảnh</th>
+                        <th>Số lượng</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><b>@item.id</b><a title="Cập nhật" class="btn btn-success btn-sm" href="@Url.Action("Update", "Product", new { id = item.id})"><i class="fas fa-tools"></i></a></td>
+                            <td>@item.productName</td>
+                            <td>@item.made</td>
+                            @*<td>@item.Info</td>
+                                <td>@item.Descript</td>*@
+                            <td>
+                                <script>
+                                        var price = new Number(@item.price);
+                                        var myObj = {
+                                            style: "currency",
+                                            currency: "VND"
+                                        }
+
+                                        document.write(price.toLocaleString("vi-VN", myObj));
+                                </script>
+                            </td>
+                            <td>@((float?)(item.sale))%</td>
+                            <td>@item.category</td>
+                            @if (item.freeship == true)
+                            {
+                                <td style="color: green"><b>Có</b></td>
+                            }
+                            else
+                            {
+                                <td style="color: red"><b>Không</b></td>
+                            }
+                            <td><img style="height:120px;width:90px" src="~/Assets/Client/img/product/@item.img"></td>
+                            <td>@item.sl</td>
+                            @if (item.stt != true)
+                            {
+                                <td style="color: red"><b>Ngưng</b></td>
+                            }
+                            else
+                            {
+                                <td style="color:green"><b>Sẵn sàng</b></td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

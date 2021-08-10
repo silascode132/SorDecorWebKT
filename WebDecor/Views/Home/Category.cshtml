@@ -1,0 +1,15 @@
+﻿@model IEnumerable<WebDecor.DATA.EF.Category>
+
+
+<div class="sidebar__categories">
+    <div class="categories__accordion">
+        <div class="accordion" id="accordionExample">
+            <div class="card-heading">
+                @foreach (var item in Model)
+                {
+                    <a href="@Url.Action("ProductForCate", "Home", new { id = item.ID})">@item.CategoryName</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

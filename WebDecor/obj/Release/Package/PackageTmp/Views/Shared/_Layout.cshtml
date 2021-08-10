@@ -1,0 +1,271 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ashion Template">
+    <meta name="keywords" content="Ashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sor Decor</title>
+
+    <!--Google Font Begin-->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+    <!--Google Font End-->
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/Assets/Client/css/bootstrap.min.css" type="text/css">
+    <script src="https://kit.fontawesome.com/16bbaa6f54.js" crossorigin="anonymous"></script>
+    <link href="~/Assets/Client/css/elegant-icons.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="~/Assets/Client/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Assets/Client/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/Assets/Client/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Assets/Client/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Assets/Client/css/style.css" type="text/css">
+    <link rel="stylesheet" href="~/Assets/Client/Card/scss/shopcard.scss" type="text/css">
+    <link rel="stylesheet" href="~/Assets/Client/css/USER.css" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+        <ul class="offcanvas__widget">
+            <li><span class="icon_search search-switch"></span></li>
+            <li>
+                <a href="#">
+                    <span class="icon_heart_alt"></span>
+                    <div class="tip">2</div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon_bag_alt"></span>
+                    <div class="tip">2</div>
+                </a>
+            </li>
+        </ul>
+        <div class="offcanvas__logo">
+            <a href="@Url.Action("Index", "Home")"><img src="~/Assets/Client/img/logo.png" alt="LOGO"></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__auth">
+            <a href="#">Login</a>
+            <a href="#">Register</a>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-2">
+                    <div class="header__logo">
+                        <a href="@Url.Action("Index", "Home")"><img src="~/Assets/Client/img/LogoWeb.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                            <li><a href="/Home/ProductForCate/Trangtri">Trang trí</a></li>
+                            <li><a href="/Home/ProductForCate/Postcard">Postcard</a></li>
+                            <li><a href="/Home/Shop">Shop</a></li>
+                            <li>
+                                <a href="/Home/ProductForCate/Quanao">Quần áo</a>
+                                <ul class="dropdown">
+                                    <li>@Html.ActionLink("Nam", "Shop", "Home", new { id = "123" })</li>
+                                    <li><a href="./shop-cart.html">Shop Cart</a></li>
+                                    <li><a href="./checkout.html">Checkout</a></li>
+                                    <li><a href="./blog-details.html">Blog Details</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Home/ProductForCate/Giadung">Gia dụng</a></li>
+                            <li><a href="/Contact/Index?#">Liên hệ</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__right">
+                        <div class="header__right__auth">
+                            @if (Session["Email"] != null)
+                            {
+                                <a href="@Url.Action("Index", "Profile")"><i class="far fa-user"></i>@Session["UserName"].ToString()</a>@Html.ActionLink("Đăng xuất", "Logout", "User")
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Đăng nhập", "Login", "User")
+                                @Html.ActionLink("Đăng ký", "Register", "User")
+                            }
+                        </div>
+
+                        <ul class="header__right__widget">
+                            <li><span class="fas fa-search search-switch"></span></li>
+                            @if (Session["Email"] != null)
+                            {
+                                <li>
+                                    <a title="Thông báo" href="#">
+                                        <span class="fas fa-bell"></span>
+                                        <div class="tip">2</div>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    @Html.Action("CartItemPartial", "Cart")
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    @RenderBody()
+
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-7">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="/Home"><img src="~/Assets/Client/img/LogoWeb.png" alt=""></a>
+                        </div>
+                        <p>
+                            Sự lựa chọn hoàn hảo cho ngôi nhà của bạn
+                        </p>
+                        <div class="footer__payment">
+                            <a href="#"><img src="~/Assets/Client/img/payment/payment-1.png" alt=""></a>
+                            <a href="#"><img src="~/Assets/Client/img/payment/payment-2.png" alt=""></a>
+                            <a href="#"><img src="~/Assets/Client/img/payment/payment-3.png" alt=""></a>
+                            <a href="#"><img src="~/Assets/Client/img/payment/payment-4.png" alt=""></a>
+                            <a href="#"><img src="~/Assets/Client/img/payment/payment-5.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-5">
+                    <div class="footer__widget">
+                        <h6>Quick links</h6>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="/Contact/Index?#">Liên hệ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <div class="footer__widget">
+                        <h6>Account</h6>
+                        <ul>
+                            <li><a href="@Url.Action("Index", "Profile")">My Account</a></li>
+                            <li><a href="@Url.Action("Index", "Cart")">Thanh toán</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-8">
+                    <div class="footer__newslatter">
+                        <h6>Nhận thông báo</h6>
+                        <form action="#">
+                            <input type="text" placeholder="Email">
+                            <button type="submit" class="site-btn">Đăng ký</button>
+                        </form>
+                        <div class="footer__social">
+                            <a href="https://www.facebook.com/lamdaayXD/"><i class="fa fa-facebook"></i></a>
+                            <a href="https://twitter.com/tunglam_sor"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            <a href="https://www.instagram.com/i_lamhoang/"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <div class="footer__copyright__text">
+                        <p>
+                            Copyright &copy; 2018 -
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | Design by <a href="#" target="_blank">SorDecor</a>
+                        </p>
+                    </div>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+    <!-- Js Plugins -->
+    <script src="~/Assets/Client/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Assets/Client/js/bootstrap.min.js"></script>
+    <script src="~/Assets/Client/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Assets/Client/js/jquery-ui.min.js"></script>
+    <script src="~/Assets/Client/js/mixitup.min.js"></script>
+    <script src="~/Assets/Client/js/jquery.countdown.min.js"></script>
+    <script src="~/Assets/Client/js/jquery.slicknav.js"></script>
+    <script src="~/Assets/Client/js/owl.carousel.min.js"></script>
+    <script src="~/Assets/Client/js/jquery.nicescroll.min.js"></script>
+    <script src="~/Assets/Client/js/main.js"></script>
+    <script src="~/Assets/Client/Card/js/ShopCard.js"></script>
+    <script src="~/Assets/Client/js/Contact.js"></script>
+    <script src="~/Assets/Client/js/Order.js"></script>
+
+    <!-- Messenger Chat plugin Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Chat plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+    <!--Script messenger chat Begin-->
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "395933997528589");
+        chatbox.setAttribute("attribution", "biz_inbox");
+
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v11.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!--Script messenger chat End-->
+    @RenderSection("ClentScript", false);
+
+
+
+</body>
+
+</html>

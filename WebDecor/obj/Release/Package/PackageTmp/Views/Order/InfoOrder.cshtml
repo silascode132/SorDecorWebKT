@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "InfoOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Style CSS Begin-->
+<style>
+    .tableOrder {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        .tableOrder td, .tableOrder th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .tableOrder tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .tableOrder tr:hover {
+            background-color: #ddd;
+        }
+
+        .tableOrder th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #ca1515;
+            color: white;
+
+        
+        }
+    .ht {
+        width: 90px;
+        height: 120px;
+    }
+</style>
+<!--Style CSS ENd-->
+
+<!--Section container Begin-->
+<section class="checkout spad">
+    <div class="container">
+        <form action="/Profile/MyOrder" method="post" class="checkout__form">
+            <div style="text-align:center">
+                <h3>Thông tin đơn hàng</h3>
+            </div>
+            <table>
+                <tr>
+                    <td>Mã hóa đơn: <b>@ViewBag.IDOrder</b></td>
+                </tr>
+                <tr>
+                    <td>Tên người nhận: @ViewBag.UserName</td>
+                </tr>
+                <tr>
+                    <td>Địa chỉ nhận: @ViewBag.Addresss</td>
+                </tr>
+                <tr>
+                    <td>Số điện thoại: @ViewBag.Phone</td>
+                </tr>
+                <tr>
+                    <td>Ngày đặt hàng: @ViewBag.DateOrder</td>
+                </tr>
+                <tr>
+                    <td>Ghi chú: @ViewBag.Note</td>
+                </tr>
+            </table>
+            <table class="tableOrder">
+                <tr>
+                    <th>Mã sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Hình ảnh</th>
+                    <th>Số lượng</th>
+                    <th>thành tiền</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><b>@item.ProductID</b></td>
+                        <td>@item.Product.ProductName</td>
+                        <td><img class="ht" src="@item.Product.Images"></td>
+                        <td>@item.SL</td>
+                        <td>
+                            <script>
+                                var price = new Number(@((float?)item.Total));
+                                var myObj = {
+                                    style: "currency",
+                                    currency: "VND"
+                                }
+
+                                document.write(price.toLocaleString("vi-VN", myObj));
+                            </script>
+                            
+                        </td>
+                    </tr>
+                }
+            </table>
+        </form>
+    </div>
+</section>
+<!--Section container End-->
+
+
+
+
+

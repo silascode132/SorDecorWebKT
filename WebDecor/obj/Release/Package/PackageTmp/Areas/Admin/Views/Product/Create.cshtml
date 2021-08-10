@@ -1,0 +1,110 @@
+﻿@model WebDecor.Areas.Admin.Models.CreateProductModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+
+
+<div class="row justify-content-center">
+
+    <div class="card-body p-0">
+        <div class="col-lg-6">
+            <div class="p-5">
+                <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Nhập sản phẩm</h1>
+                </div>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <form>
+                        <div class="form-group">
+                            <p>Nhập tên sản phẩm:</p>
+                            @Html.TextBoxFor(model => model.ProductName, htmlAttributes: new { @class = "form-control" }) @ViewData["ErrorName"]
+                            @*<input class="form-control">*@
+                        </div>
+                        @*<div class="form-group">
+                                <p>Xuất xứ</p>
+                                <div class="dropdown mb-4">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Dropdown
+                                    </button>
+                                    <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div class="form-group">
+                            <p>Xuất xứ:</p>
+                            @Html.TextBoxFor(model => model.Made, htmlAttributes: new { @class = "form-control" }) @ViewData["ErrorMade"]
+                            @*<input class="form-control">*@
+                        </div>
+                        <div class="form-group">
+                            <p>Thông tin</p>
+                            @Html.TextBoxFor(model => model.Info, htmlAttributes: new { @class = "form-control" })
+                            @*<input class="form-control">*@
+                        </div>
+                        <div class="form-group">
+                            <p>Mô tả sản phẩm</p>
+                            @Html.TextBoxFor(model => model.Descript, htmlAttributes: new { @class = "form-control" })
+                            @*<input class="form-control">*@
+                        </div>
+                        <div class="form-group">
+                            <p>Giá</p>
+                            @Html.TextBoxFor(model => model.Price, htmlAttributes: new { @class = "form-control" }) @ViewData["ErrorPrice"]
+                            @*<input class="form-control">*@
+                        </div>
+                        <div class="form-group">
+                            <p>Size</p>
+                            @Html.TextBoxFor(model => model.Size, htmlAttributes: new { @class = "form-control" })
+                            @*<input class="form-control">*@
+                        </div>
+                        <div class="form-group">
+                            <p>Sale</p>
+                            @Html.TextBoxFor(model => model.Sale, htmlAttributes: new { @class = "form-control" })
+                            @*<input class="form-control">*@
+                        </div>
+                        <div class="form-group">
+                            <p>Khuyến mãi</p>
+                            @Html.TextBoxFor(model => model.Promotions, htmlAttributes: new { @class = "form-control" })
+                            @*<input class="form-control">*@
+                        </div>
+                        <div class="form-group">
+                            <p>Hình ảnh</p>
+                            @Html.TextBoxFor(model => model.Image, htmlAttributes: new { @class = "form-control" }) @ViewData["ErrorImages"]
+                            @*<input class="form-control">*@
+                        </div>
+                        <div class="form-group">
+                            <p>Số lượng</p>
+                            @Html.TextBoxFor(model => model.SL, htmlAttributes: new { @class = "form-control" }) @ViewData["ErrorSL"]
+                            @*<input class="form-control">*@
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#" class="btn btn-success btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <input type="submit" value="Create" class="btn btn-default" />
+                                @*<span title="Thêm" class="text">Thêm</span>*@
+                            </a>
+                        </div>
+                        <hr>
+                    </form>
+                }
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+

@@ -1,0 +1,32 @@
+﻿/* ============ FUNCTION ============ 
+   ==================================	 */
+
+
+
+
+
+
+
+
+CREATE TRIGGER trg_AddProduct ON dbo.Product
+AFTER INSERT
+AS
+BEGIN
+	DECLARE @ID VARCHAR(128)
+	IF(SELECT COUNT(ID) FROM dbo.Product) = 0
+		SET @ID = '0'
+	ELSE
+		SELECT @ID = MAX(RIGHT(ID, 5)) FROM dbo.Product
+		SELECT @ID = CASE
+			WHEN @ID >= 0 AND @ID < 9 THEN 'SP0000' + CONVERT(CHAR, CONVERT(INT, @ID) + 1)	-- Ex: SP00004
+			WHEN @ID >= 9 AND @ID < 99 THEN 'SP000' + CONVERT(CHAR, CONVERT(INT, @ID) + 1)	-- Ex: SP00032
+			WHEN @ID >=99 AND @ID < 999 THEN 'SP00' + CONVERT(CHAR, CONVERT(INT, @ID) + 1)	-- Ex: SP00742
+			WHEN @ID >=999 AND @ID <9999 THEN 'SP0' + CONVERT(CHAR, CONVERT(INT, @ID) + 1)	-- Ex: SP01525
+			WHEN @ID >=9999 THEN 'SP' + CONVERT(CHAR, CONVERT(INT, @ID) + 1)
+		END
+
+		SET @ID = MAX(LEFT(@ID, 7))
+		UPDATE dbo.Product
+		SET ID = @ID
+		WHERE ID = '0'
+END

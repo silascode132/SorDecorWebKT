@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model WebDecor.Models.LoginModel
+<!DOCTYPE html>
+
+
+<HTMl>
+
+<HEAD>
+    <link rel="stylesheet" href="~/Assets/Client/css/login.css" type="text/css">
+    <script src="https://kit.fontawesome.com/16bbaa6f54.js" crossorigin="anonymous"></script>
+    <title>Login</title>
+</HEAD>
+
+
+<BODY>
+
+
+
+    <div class="container" id="container">
+        <div class="form-container sign-in-container">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+                <h1>Đăng nhập</h1>
+                <div class="social-container">
+                    <a href="/User/LoginFacebook" class="facebook-social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="google-social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="in-social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>hoặc sử dụng tài khoản</span>
+                @Html.TextBoxFor(model => model.Email, new { @type = "email", @placeholder = "Email", @autofocus = "autofocus" }) @ViewData["ErrorMail"]
+                <!--<input type="email" placeholder="Email" />-->
+                @Html.TextBoxFor(model => model.Pass, new { @type = "password", @placeholder = "Password" }) @ViewData["ErrorPass"]
+
+                <a href="#">Forgot your password?</a>
+                <button type="submit">Đăng nhập</button>
+            }
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Nếu bạn chưa có tài khoản, nhấn vào đây để đăng ký tài khoản</p>
+                    <button class="ghost" id="signUp">@Html.ActionLink("Đăng ký", "Register", "User")</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</BODY>
+
+
+</HTMl>

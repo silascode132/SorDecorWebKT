@@ -1,0 +1,26 @@
+﻿/* FUNCTION */
+
+-- Function mã hóa mật khẩu
+CREATE FUNCTION Func_Encrypt(@Pass NVARCHAR(128))
+RETURNS VARBINARY(MAX) AS
+BEGIN
+	DECLARE @Encr VARBINARY(MAX);
+	
+	SET @Encr = ENCRYPTBYPASSPHRASE('MiDienLamHon12081999', @Pass)
+	RETURN @Encr;
+END
+
+
+
+-- Function giải mã mật khẩu
+CREATE FUNCTION Func_Decrypt(@CODE VARBINARY(MAX))
+RETURNS NVARCHAR(128) AS
+BEGIN
+	DECLARE @Pass NVARCHAR(128);
+
+	SELECT @Pass = CONVERT(NVARCHAR(128),DecryptByPassPhrase('MiDienLamHon12081999', @CODE))
+	RETURN @Pass;
+END
+
+
+

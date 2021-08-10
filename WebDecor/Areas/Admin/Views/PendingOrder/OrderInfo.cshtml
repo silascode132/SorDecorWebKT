@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "OrderInfo";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="h3 mb-2 text-gray-800">Đơn hàng đang chờ xử lý</h1>
+
+
+
+<!-- DataTales Example -->
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <table>
+            <tr>
+                <td>Mã hóa đơn: <b>@ViewBag.IDOrder</b></td>
+            </tr>
+            <tr>
+                <td>Tên người nhận: @ViewBag.UserName</td>
+            </tr>
+            <tr>
+                <td>Địa chỉ nhận: @ViewBag.Addresss</td>
+            </tr>
+            <tr>
+                <td>Số điện thoại: @ViewBag.Phone</td>
+            </tr>
+            <tr>
+                <td>Ngày đặt hàng: @ViewBag.DateOrder</td>
+            </tr>
+            <tr>
+                <td>Ghi chú: @ViewBag.Note</td>
+            </tr>
+        </table>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Hình ảnh</th>
+                        <th>Số lượng</th>
+                        <th>thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><b>@item.ProductID</b></td>
+                            <td>@item.Product.ProductName</td>
+                            <td><img style="width:90px; height:120px" class="ht" src="@item.Product.Images"></td>
+                            <td>@item.SL</td>
+                            <td>
+                                <script>
+                                    var price = new Number(@((float?)(item.Total*item.SL)));
+                                    var myObj = {
+                                        style: "currency",
+                                        currency: "VND"
+                                    }
+
+                                    document.write(price.toLocaleString("vi-VN", myObj));
+                                </script>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

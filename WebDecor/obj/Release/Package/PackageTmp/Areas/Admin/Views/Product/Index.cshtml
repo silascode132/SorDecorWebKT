@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Sản phẩm</h1>
+
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <a class="btn btn-success btn-sm" href="@Url.Action("Create", "Product")">Thêm sản phẩm</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã SP</th>
+                        <th>Tên SP</th>
+                        <th>Xuất xứ</th>
+                        <th>Thông tin</th>
+                        <th>Descriptions</th>
+                        <th>Giá</th>
+                        <th>Size</th>
+                        <th>Sale</th>
+                        <th>Số lượng</th>
+                        <th>Hình ảnh</th>
+                        <th>Khuyến mãi</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Mã SP</th>
+                        <th>Tên SP</th>
+                        <th>Xuất xứ</th>
+                        <th>Thông tin</th>
+                        <th>Descriptions</th>
+                        <th>Giá</th>
+                        <th>Size</th>
+                        <th>Sale</th>
+                        <th>Số lượng</th>
+                        <th>Hình ảnh</th>
+                        <th>Khuyến mãi</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        if (item.STT != false)
+                        {
+                            <tr>
+                                <td><b>@item.ID</b><a title="Cập nhật" class="btn btn-success btn-sm" href="@Url.Action("Update", "Product", new { id = item.ID})"><i class="fas fa-tools"></i></a></td>
+                                <td>@item.ProductName</td>
+                                <td>@item.Made</td>
+                                <td>@item.Info</td>
+                                <td>@item.Descript</td>
+                                <td>
+                                    <script>
+                                        var price = new Number(@item.Price);
+                                        var myObj = {
+                                            style: "currency",
+                                            currency: "VND"
+                                        }
+
+                                        document.write(price.toLocaleString("vi-VN", myObj));
+                                    </script>
+                                </td>
+                                <td>@item.Size</td>
+                                <td>@((float?)(item.Sale))%</td>
+                                <td>@item.SL</td>
+                                <td><img style="height:120px;width:90px" src="@item.Images"></td>
+                                <td>@item.Promotions</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

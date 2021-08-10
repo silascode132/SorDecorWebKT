@@ -1,0 +1,193 @@
+﻿@{
+    ViewBag.Title = "ProductDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Breadcrumb Begin -->
+<title>@Model.productName - SorDecor | Sự lựa chọn hoàn hảo cho ngôi nhà của bạn</title>
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Home</a>
+                    <a href="@Url.Action("ProductForCate", "Home", new { id = 1})">@Model.category</a>
+                    <span>@Model.productName</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="product__details__pic">
+                    <div class="product__details__slider__content">
+                        <div class="product__details__pic__slider owl-carousel">
+                            <img data-hash="product-1" class="product__big__img" src="~/Assets/Client/img/product/@Model.imageURL" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="product__details__text">
+                    <h3>@Model.productName <span>Xuất xứ: @Model.made</span></h3>
+                    @if (((float?)@Model.sale).ToString() != "0")
+                    {
+                        <div class="product__details__price">
+                            <script>
+                                var price = new Number(@((float?)Model.price - (((float?)Model.price) * ((float?)Model.sale))/100));
+                                var myObj = {
+                                    style: "currency",
+                                    currency: "VND"
+                                }
+
+                                document.write(price.toLocaleString("vi-VN", myObj));
+                            </script>
+                            <span>
+                                <script>
+                                    var price = new Number(@((float?)Model.price));
+                                    var myObj = {
+                                        style: "currency",
+                                        currency: "VND"
+                                    }
+
+                                    document.write(price.toLocaleString("vi-VN", myObj));
+                                </script>
+                            </span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="product__details__price">
+                            <script>
+                                var price = new Number(@((long?)Model.price));
+                                var myObj = {
+                                    style: "currency",
+                                    currency: "VND"
+                                }
+
+                                document.write(price.toLocaleString("vi-VN", myObj));
+                            </script>
+                        </div>
+                    }
+
+                    <p>@Model.info</p>
+                    <div class="product__details__button">
+                        <div id="add-cart" onclick="getInputValue();">
+                            @if (Model.stt && Model.sL > 1)
+                            {
+                                <a href="@Url.Action("AddItem", "Cart", new { @productId = Model.productID, @SL = 1 })" class="cart-btn"><i class="fas fa-cart-arrow-down"></i> Thêm vào giỏ</a>
+                            }
+                            else
+                            {
+                                <a href="#" class="cart-btn"><i class="fas fa-exclamation-triangle"></i> Sản phẩm không có sẵn</a>
+                            }
+                        </div>
+                    </div>
+                    <div class="product__details__widget">
+                        <ul>
+                            <li>
+                                <span>Kho: </span>
+                                <div class="stock__checkbox">
+                                    @Model.sL
+                                </div>
+                            </li>
+                            <li>
+                                <span>Size có sẵn:</span>
+                                @if (Model.size != 0)
+                                {
+                                    <div class="size__btn">
+                                        <label for="xs-btn" class="active">
+                                            <input type="radio" id="xs-btn">
+                                            <b>xs</b>
+                                        </label>
+                                        <label for="s-btn">
+                                            <input type="radio" id="s-btn">
+                                            <b>s</b>
+                                        </label>
+                                        <label for="m-btn">
+                                            <input type="radio" id="m-btn">
+                                            <b>m</b>
+                                        </label>
+                                        <label for="l-btn">
+                                            <input type="radio" id="l-btn">
+                                            <b>l</b>
+                                        </label>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="size__btn">
+                                        <p>Không có</p>
+                                    </div>
+                                }
+
+                            </li>
+                            <li>
+                                <span>Khuyến mãi:</span>
+                                @if (Model.freeShip)
+                                {
+                                    <p><b>Freeship</b></p>
+                                }
+                                else
+                                {
+                                    <p>Không có</p>
+                                }
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="product__details__tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Chi tiết sản phẩm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Đánh giá ( 2 )</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <h6>Chi tiết sản phẩm</h6>
+                            <p>
+                                @Model.des
+                            </p>
+                        </div>
+                        <div class="tab-pane" id="tabs-2" role="tabpanel">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+                                nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+                                quis, sem.
+                            </p>
+                        </div>
+                        <div class="tab-pane" id="tabs-3" role="tabpanel">
+                            <h6>Đánh giá ( 2 )</h6>
+                            <p>
+                                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed
+                                quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt loret.
+                                Neque porro lorem quisquam est, qui dolorem ipsum quia dolor si. Nemo enim ipsam
+                                voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia ipsu
+                                consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nulla
+                                consequat massa quis enim.
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+                                nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+                                quis, sem.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- Product Details Section End -->

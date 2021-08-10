@@ -1,0 +1,52 @@
+﻿
+@{
+    Layout = null;
+}
+@model WebDecor.Models.RegisterModel
+
+<!DOCTYPE html>
+<HTMl>
+<HEAD>
+    <link rel="stylesheet" href="~/Assets/Client/css/login.css" type="text/css">
+    <script src="https://kit.fontawesome.com/16bbaa6f54.js" crossorigin="anonymous"></script>
+    <title>Đăng ký</title>
+</HEAD>
+<BODY>
+    <div class="container" id="container">
+        <div class="form-container sign-in-container">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true, "", new { @classs = "alert alert-danger" })
+                <h1>Tạo tài khoản</h1>
+                <div class="form-group">
+
+                    @if (ViewBag.Success != null)
+                    {
+                        <div style="color: #26FF55"><strong>@ViewBag.Success</strong></div>
+                    }
+                    @if (ViewBag.Danger != null)
+                    {
+
+                        <div style="color: #ca1515"><strong>@ViewBag.Danger</strong></div>
+                    }
+                </div>
+                @Html.TextBoxFor(model => model.userName, new { @type = "text", @placeholder = "Tên đăng nhập" }) <span style="color: #ca1515"><strong>@ViewData["ErrorUserName"]</strong></span>
+                @Html.TextBoxFor(model => model.name, new { @type = "text", @placeholder = "Tên" })
+                @Html.TextBoxFor(model => model.email, new { @type = "email", @placeholder = "Email" }) <span style="color: #ca1515"><strong>@ViewData["ErrorMail"]</strong></span>
+                @Html.TextBoxFor(model => model.pass, new { @type = "password", @placeholder = "Mật khẩu" })
+                @Html.TextBoxFor(model => model.rePass, new { @type = "password", @placeholder = "Nhập lại mật khẩu" }) <span style="color: #ca1515"><strong>@ViewData["ErrorRePass"]</strong></span>
+                <button type="submit">Đăng ký</button>
+            }
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-right">
+                    <h1>Welcome Back!</h1>
+                    <p>Nếu bạn đã có tài khoản, hãy đăng nhập với thông tin tài khoản của bạn</p>
+                    <button class="ghost" id="signUp">@Html.ActionLink("Đăng nhập", "Login", "User")</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</BODY>
+</HTMl>

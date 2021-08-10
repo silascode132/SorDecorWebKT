@@ -1,0 +1,362 @@
+﻿@model PagedList.IPagedList<WebDecor.DATA.EF.Product>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Categories Section Begin -->
+<section class="categories">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 p-0">
+
+
+                <div class="categories__item categories__large__item set-bg" data-setbg="/Assets/Client/img/categories-large-trangtri.jpg">
+                    <div class="categories__text">
+                        <h1>Trang trí</h1>
+                        <p>
+                            Trang trí căn phòng của bạn với phong cách Vintage, những sản phẩm tại cửa hàng mình sẽ
+                            giúp bạn!
+                        </p>
+                        <a href="/Home/ProductForCate/Trangtri">Xem ngay</a>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                        <div class="categories__item set-bg" data-setbg="https://1.bp.blogspot.com/-5Z219oUb10U/YNvq6xTmhrI/AAAAAAAABn8/Xn1YNOg4QAMc8IiWKO-TOXkFmv2H4-T8ACLcBGAsYHQ/s442/categories-postcard.jpg">
+                            <div class="categories__text">
+                                <h4>PostCard</h4>
+                                <p>358 sản phẩm</p>
+                                <a href="/Home/ProductForCate/Postcard">Xem ngay</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                        <div class="categories__item set-bg" data-setbg='https://technext.github.io/ashion/img/categories/category-3.jpg'>
+                            <div class="categories__text">
+                                <h4>Quần áo</h4>
+                                <p>273 sản phẩm</p>
+                                <a href="/Home/ProductForCate/Quanao">Xem ngay</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                        <div class="categories__item set-bg" data-setbg="https://1.bp.blogspot.com/-YiyWItgMALI/YNvsjgym7XI/AAAAAAAABoE/bjVyfnbOx-U0OAtz7p7tYpyCKQ_d_AMzQCLcBGAsYHQ/s472/Categories-Giadung.jpg">
+                            <div class="categories__text">
+                                <h4>Gia dụng</h4>
+                                <p>159 sản phẩm</p>
+                                <a href="/Home/ProductForCate/Giadung">Xem ngay</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                        <div class="categories__item set-bg" data-setbg="https://technext.github.io/ashion/img/categories/category-5.jpg">
+                            <div class="categories__text">
+                                <h4>SUMMER SALE</h4>
+                                <p>792 sản phẩm</p>
+                                <a href="#">Xem ngay</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Categories Section End -->
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4">
+                <div class="section-title">
+                    <h4>Sản phẩm</h4>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8">
+                <ul class="filter__controls">
+                    <li class="active" data-filter="*">Tất cả</li>
+                    <li data-filter=".Trangtri">Trang trí</li>
+                    <li data-filter=".Postcard">PostCard</li>
+                    <li data-filter=".Quanao">Quần áo</li>
+                    <li data-filter=".Giadung">Gia dụng</li>
+                    <li data-filter=".SALE">SALE</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row property__gallery">
+            @foreach (var item in Model)
+            {
+                if (item.STT != false)
+                {
+                    if (((float?)item.Sale).ToString() != "0")
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix SALE">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="/Assets/Client/img/product/@item.ImageUrl">
+                                    <div class="label sale">-@((float?)item.Sale)%</div>
+                                    <ul class="product__hover">
+                                        <li><a href="@Url.Action("ProductDetails", "Home", new { id = item.ID})"> <!--class="image-popup"--> <span class="fas fa-search"></span></a>
+                                        <li><a href="@Url.Action("AddItem", "Cart", new { @productId = item.ID, @SL = 1 })"><span class="fas fa-shopping-cart"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="@Url.Action("ProductDetails", "Home", new { id = item.ID})">@item.ProductName</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product_sale product__price" style="color: #FF4646">
+                                        <script>
+                                        var price = new Number(@((float?)item.Price - ((float?)item.Price * (float?)item.Sale / 100)));
+                                        var myObj = {
+                                            style: "currency",
+                                            currency: "VND"
+                                        }
+
+                                        document.write(price.toLocaleString("vi-VN", myObj));
+                                        </script>
+                                        <sup><del>@((float?)item.Price)</del></sup>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (item.Category == 4)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix Giadung">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="@item.ImageUrl">
+                                    <div class="label new">Gia dụng</div>
+                                    <ul class="product__hover">
+                                        <li><a href="@Url.Action("ProductDetails", "Home", new { id = item.ID})"><span class="fas fa-search"></span></a>
+                                        <li><a href="@Url.Action("AddItem", "Cart", new { @productId = item.ID, @SL = 1 })"><span class="fas fa-shopping-cart"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="@Url.Action("ProductDetails", "Home", new { id = item.ID})">@item.ProductName</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product_sale product__price">
+                                        <script>
+                                        var price = new Number(@((float?)item.Price));
+                                        var myObj = {
+                                            style: "currency",
+                                            currency: "VND"
+                                        }
+
+                                        document.write(price.toLocaleString("vi-VN", myObj));
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (item.Category == 1)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix Trangtri">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="/Assets/Client/img/product/@item.ImageUrl">
+                                    <div class="label trangtri">Trang trí</div>
+                                    <ul class="product__hover">
+                                        <li><a href="@Url.Action("ProductDetails", "Home", new { id = item.ID})"> <!--class="image-popup"--> <span class="fas fa-search"></span></a>
+                                        <li><a href="@Url.Action("AddItem", "Cart", new { @productId = item.ID, @SL = 1 })"><span class="fas fa-shopping-cart"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="@Url.Action("ProductDetails", "Home", new { id = item.ID})">@item.ProductName</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product_sale product__price">
+                                        <script>
+                                        var price = new Number(@((float?)item.Price));
+                                        var myObj = {
+                                            style: "currency",
+                                            currency: "VND"
+                                        }
+
+                                        document.write(price.toLocaleString("vi-VN", myObj));
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (item.Category == 2)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix Postcard">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="@item.ImageUrl">
+                                    <div class="label stockblue">PostCard</div>
+                                    <ul class="product__hover">
+                                        <li><a href="@Url.Action("ProductDetails", "Home", new { id = item.ID})"> <!--class="image-popup"--> <span class="fas fa-search"></span></a>
+                                        <li><a href="@Url.Action("AddItem", "Cart", new { @productId = item.ID, @SL = 1 })"><span class="fas fa-shopping-cart"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="@Url.Action("ProductDetails", "Home", new { id = item.ID})">@item.ProductName</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product_sale product__price">
+                                        <script>
+                                        var price = new Number(@((float?)item.Price));
+                                        var myObj = {
+                                            style: "currency",
+                                            currency: "VND"
+                                        }
+
+                                        document.write(price.toLocaleString("vi-VN", myObj));
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (item.Category == 3)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix Quanao">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="@item.ImageUrl">
+                                    <div class="label stockout">Quần áo</div>
+                                    <ul class="product__hover">
+                                        <li><a href="@Url.Action("ProductDetails", "Home", new { id = item.ID})"> <!--class="image-popup"--> <span class="fas fa-search"></span></a>
+                                        <li><a href="@Url.Action("AddItem", "Cart", new { @productId = item.ID, @SL = 1 })"><span class="fas fa-shopping-cart"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="@Url.Action("ProductDetails", "Home", new { id = item.ID})">@item.ProductName</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product_sale product__price">
+                                        <script>
+                                        var price = new Number(@((float?)item.Price));
+                                        var myObj = {
+                                            style: "currency",
+                                            currency: "VND"
+                                        }
+
+                                        document.write(price.toLocaleString("vi-VN", myObj));
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+            <div class="col-lg-12 text-center">
+                <div class="pagination__option">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Product Section End -->
+<!-- Discount Section Begin -->
+<section class="discount">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 p-0">
+                <div class="discount__pic">
+                    <img src="~/Assets/Client/img/bigsale.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 p-0">
+                <div class="discount__text">
+                    <div class="discount__text__title">
+                        <span>Discount</span>
+                        <h2>Big sale 2021</h2>
+                        <h5><span>Sale up to</span> 50%</h5>
+                    </div>
+                    @*<div class="discount__countdown" id="countdown-time">
+                            <div class="countdown__item">
+                                <span>30</span>
+                                <p>Days</p>
+                            </div>
+                            <div class="countdown__item">
+                                <span>1</span>
+                                <p>Hour</p>
+                            </div>
+                            <div class="countdown__item">
+                                <span>19</span>
+                                <p>Min</p>
+                            </div>
+                            <div class="countdown__item">
+                                <span>20</span>
+                                <p>Sec</p>
+                            </div>
+                        </div>*@
+                    <a href="/Home/Shop">Shop now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Discount Section End -->
+<!-- Services Section Begin -->
+<section class="services spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="services__item">
+                    <i class="fa fa-car"></i>
+                    <h6>Giao hàng</h6>
+                    <p>Giao hàng tận nơi, nhanh chóng</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="services__item">
+                    <i class="fa fa-money"></i>
+                    <h6>Hoàn tiền</h6>
+                    <p>Nếu những sản phẩm bị lỗi</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="services__item">
+                    <i class="fa fa-support"></i>
+                    <h6>Hỗ trợ khách hàng</h6>
+                    <p>Hỗ trợ 24/7</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="services__item">
+                    <i class="far fa-check-circle"></i>
+                    <h6>Bảo hành</h6>
+                    <p>Bảo hành đến 2 năm</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Services Section End -->

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "ChangedPass";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="contact__form">
+        <form action="/Profile/ChangedPass" method="post" >
+            @if (ViewBag.Difference != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.Difference
+                </div>
+            }
+            else if (ViewBag.WrongPass != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.WrongPass
+                </div>
+            }
+            else if (ViewBag.Success != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @ViewBag.Success
+                </div>
+            }
+            <h5>Đổi mật khẩu</h5>
+            <input required name="oldpass" type="password" placeholder="Nhập mật khẩu cũ" />
+            <input required name="newpass" type="password" placeholder="Nhập mật khẩu mới" />
+            <input required name="repass" type="password" placeholder="Nhập lại mật khẩu mới" />
+            <button class="site-btn" type="submit">Đổi mật khẩu</button>
+        </form>
+
+
+    </div>
+</div>

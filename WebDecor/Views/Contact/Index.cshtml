@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Home</a>
+                    <span>Contact</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Contact Section Begin -->
+<section class="contact spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="contact__content">
+                    <div class="contact__address">
+                        <h5>Thông tin liên hệ</h5>
+                        <ul>
+                            <li>
+                                <h6><i class="fa fa-map-marker"></i> Địa chỉ</h6>
+                                <p>79 Buon Ju, xã Eatu TP Buôn Ma Thuột</p>
+                            </li>
+                            <li>
+                                <h6><i class="fa fa-phone"></i> Điện thoại</h6>
+                                <p><span>034.5071.246</span><span>091.556.1837</span></p>
+                            </li>
+                            <li>
+                                <h6><i class="fa fa-headphones"></i> Email</h6>
+                                <p>hoangtunglamltd@gmail.com</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="contact__form">
+                        <h5>Gửi mail</h5>
+                        <form action="#">
+                            <input required type="text" id="txtName" placeholder="Tên">
+                            <input required type="text" id="txtEmail" placeholder="Email">
+                            <input required type="text" id="txtPhone" placeholder="Số điện thoại">
+                            <textarea required id="txtContent" placeholder="Lời nhắn"></textarea>
+                            <input id="btnSend" type="submit" class="site-btn" value="Gửi">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="contact__map">
+                    <iframe width="600" height="450" style="border:0" loading="lazy" allowfullscreen
+                            src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJw6--y9b3cTERYMd695M8i8M&key=AIzaSyCBjOZ7BeDHi302MLS9CX7a3-3COXN8lIw"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Section End -->

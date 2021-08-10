@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "ListFeedback";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="h3 mb-2 text-gray-800">Danh sách phản hồi</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <a class="btn btn-success btn-sm" href="@Url.Action("Index", "Feedback")">Phản hồi mới</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên người gửi</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>Nội dung</th>
+                        <th>Ngày gửi</th>
+                        <th>Phản hồi lại</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên người gửi</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>Nội dung</th>
+                        <th>Ngày gửi</th>
+                        <th>Phản hồi lại</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        if (item.STT == false)
+                        {
+                            <tr>
+                                <td><b>@item.ID</b></td>
+                                <td>@item.Name</td>
+                                <td>@item.Phone</td>
+                                <td>@item.Email</td>
+                                <td>@item.Content</td>
+                                <td>@item.CreatedDate</td>
+                                <td><i class="fas fa-times"></i></td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td><b>@item.ID</b></td>
+                                <td>@item.Name</td>
+                                <td>@item.Phone</td>
+                                <td>@item.Email</td>
+                                <td>@item.Content</td>
+                                <td>@item.CreatedDate</td>
+                                <td><i class="fas fa-check"></i></td>
+                            </tr>
+                        }
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

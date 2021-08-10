@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.Title = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model WebDecor.DATA.EF.Product
+
+
+<h2>Cập nhật</h2>
+<form action="/Product/Edit" method="post">
+    <div class="row">
+        <div class="col-md-1">
+            <p>Mã sản phẩm:</p>
+        </div>
+        <div class="col-md-1">
+            <input style="width:500px" class="form-control" name="productID" value="@Model.ID" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            <p>Tên sản phẩm: </p>
+        </div>
+        <div class="col-md-1">
+            <input style="width:500px" class="form-control" name="productName" value="@Model.ProductName" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-1">
+            <p>Xuất xứ: </p>
+        </div>
+        <div class="col-md-2">
+            <input style="width:500px" class="form-control" name="productMade" value="@Model.Made" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            <p>Thông tin: </p>
+        </div>
+        <div class="col-md-1">
+            <input style="width:500px" class="form-control" name="productInfo" value="@Model.Info" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            <p>Description: </p>
+        </div>
+        <div class="col-md-1">
+            <input style="width:500px" class="form-control" name="productDes" value="@Model.Descript" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            <p>Giá: </p>
+        </div>
+        <div class="col-md-1">
+            <input required pattern="[0-9]+" style="width:500px" class="form-control" name="productPrice" value="@((float?)Model.Price)" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            <p>Size: </p>
+        </div>
+        <div class="col-md-1">
+            <input style="width:500px" class="form-control" name="productSize" value="@Model.Size" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            <p>Sale: </p>
+        </div>
+        <div class="col-md-1">
+            <input required pattern="[0-9]+" style="width:500px" class="form-control" name="productSale" value="@((float?)Model.Sale)" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            <p>Số lượng: </p>
+        </div>
+        <div class="col-md-1">
+            <input required pattern="[0-9]+" style="width:500px" class="form-control" name="productSL" value="@Model.SL" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            <p>Khuyến mãi: </p>
+        </div>
+        <div class="col-md-1">
+            <input style="width:500px" class="form-control" name="productPromotions" value="@Model.Promotions" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            <p>Hình ảnh: </p>
+        </div>
+        <div class="col-md-1">
+            <input style="width:500px" class="form-control" name="productImages" value="@Model.Images" />
+        </div>
+    </div>
+
+    <input class="btn btn-success btn-sm" type="submit" value="Sửa"/>
+    <a title="Xóa" data-toggle="modal" data-target="#confirm" class="btn btn-danger btn-sm" href="@Url.Action("Delete", "Product", new { id = Model.ID})"><i class="fas fa-trash-alt"></i> | Xóa</a>
+</form>
+<div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông báo!</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Bạn chắc chắn muốn xóa sản phẩm này không?</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
+                <a class="btn btn-danger" href="@Url.Action("Delete", "Product", new { ID = Model.ID})">Xóa</a>
+            </div>
+        </div>
+    </div>
+</div>
+

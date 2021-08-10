@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="h3 mb-2 text-gray-800">Đơn hàng đã hoàn thành</h1>
+
+
+
+<!-- DataTales Example -->
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã đơn</th>
+                        <th>ID user</th>
+                        <th>Người nhận</th>
+                        <th>Địa chỉ</th>
+                        <th>Điện thoại</th>
+                        <th>Ghi chú</th>
+                        <th>Thanh toán</th>
+                        <th>Ngày mua</th>
+                        <th>Ngày giao</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Mã đơn</th>
+                        <th>ID user</th>
+                        <th>Người nhận</th>
+                        <th>Địa chỉ</th>
+                        <th>Điện thoại</th>
+                        <th>Ghi chú</th>
+                        <th>Thanh toán</th>
+                        <th>Ngày mua</th>
+                        <th>Ngày giao</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><b>@item.ID </b><a title="Chi tiết" class="btn btn-success btn-sm" href="@Url.Action("OrderInfo", "PendingOrder", new { ID = item.ID})"><i class="fas fa-search"></i></a></td>
+                            <td>@item.UserID</td>
+                            <td>@item.UserName</td>
+                            <td>@item.UserAddress</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Note</td>
+                            @if (item.Paid == false)
+                            {
+                                <td><i class="fas fa-times"></i></td>
+                            }
+                            else
+                            {
+                                <td><i class="fas fa-check"></i></td>
+
+                            }
+                            <td>@item.DateOrder</td>
+                            <td>@item.DeliveryDate</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+

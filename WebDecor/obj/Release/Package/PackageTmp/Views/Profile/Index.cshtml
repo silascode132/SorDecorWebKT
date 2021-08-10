@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model WebDecor.DATA.EF.Account
+
+<!--Section container Begin-->
+<section class="checkout spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-lg-8 col-md-8">
+                    <ul class="filter__controls">
+                        <li class="active" data-filter=".Taikhoan"><a href="#"><i class="far fa-user"></i> Tài khoản</a></li>
+                        <li data-filter=".Donhang"><a href="@Url.Action("MyOrder", "Profile")"><i class="far fa-file-alt"></i> Đơn hàng</a></li>
+                        <li data-filter=".Xuly"><a href="@Url.Action("PendingBill", "Profile")"><i class="fas fa-sync-alt"></i> Đang xử lý</a></li>
+                        <li data-filter=".Danggiao"><a href="@Url.Action("Shipping", "Profile")"><i class="fas fa-truck"></i> Đang giao</a></li>
+                        <li data-filter=".Dagiao"><a href="@Url.Action("Delivered", "Profile")"><i class="fas fa-check"></i> Đã giao</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <form action="/Profile/Index" method="post" style="text-align:center" class="checkout__form">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                @Html.AntiForgeryToken()
+                <h3>Hồ sơ của tôi</h3>
+                <br />
+                <p>ID tài khoản: <b>@Model.ID</b></p>
+                <div class="checkout__form__input">
+                    <p>Tên người dùng: <input style="width:300px" name="UserName" type="text" value="@Model.UserName"></p>
+                </div>
+                <div class="checkout__form__input">
+                    <p>
+                        Ngày sinh:
+                        @if (Model.Birthday == null)
+                        {
+                            <select class="col-md-1" name="daycars" id="daycars">
+                                <option>-Ngày-</option>
+                                @for (int i = 0; i < 31; i++)
+                                {
+                                    <option value="@(i+1)">@(i+1)</option>
+                                }
+                            </select>
+                            <select class="col-sm-1" name="monthcars" id="monthcars">
+                                <option>-Tháng-</option>
+                                @for (int i = 0; i < 12; i++)
+                                {
+                                    <option value="@(i+1)">Tháng @(i+1)</option>
+                                }
+                            </select>
+                            <select class="col-md-1" name="yearcars" id="yearcars">
+                                <option>-Năm-</option>
+                                @for (int i = DateTime.Now.Year; i > 1989; i--)
+                                {
+                                    <option value="@i">@(i)</option>
+                                }
+                            </select>
+                        }
+                        else
+                        {
+                            <select class="col-md-1" name="daycars" id="daycars">
+                                <option class="col-md-4">@Model.Birthday.Value.Day</option>
+                                @for (int i = 0; i < Model.Birthday.Value.Day - 1; i++)
+                                {
+                                    <option value="day@(i+1)"> @(i+1)</option>
+                                }
+                                @for (int i = Model.Birthday.Value.Day; i < 31; i++)
+                                {
+                                    <option value="day@(i+1)"> @(i+1)</option>
+                                }
+                            </select>
+                            <select class="col-sm-1" name="monthcars" id="monthcars">
+                                <option>@Model.Birthday.Value.Month</option>
+                                @for (int i = 0; i < Model.Birthday.Value.Month - 1; i++)
+                                {
+                                    <option value="month@(i+1)">@(i+1)</option>
+                                }
+                                @for (int i = Model.Birthday.Value.Month; i < 12; i++)
+                                {
+                                    <option value="month@(i+1)">@(i+1)</option>
+                                }
+                            </select>
+                            <select class="col-md-1" name="yearcars" id="yearcars">
+                                <option>@Model.Birthday.Value.Year</option>
+                                @for (int i = DateTime.Now.Year; i > Model.Birthday.Value.Year; i--)
+                                {
+                                    <option value="year(@i)"> @(i)</option>
+                                }
+                                @for (int i = Model.Birthday.Value.Year - 1; i > 1988; i--)
+                                {
+                                    <option value="year(@i)"> @(i)</option>
+                                }
+                            </select>
+                        }
+
+                    </p>
+                </div>
+                <div class="checkout__form__input">
+                    <p>
+                        Giới tính:
+                        @if (Model.SEX == null)
+                        {
+                            <select name="sexcars" id="sexcars">
+                                <option>--Giới tính--</option>
+                                <option value="Nữ">Nữ</option>
+                                <option value="Nam">Nam</option>
+                            </select>
+                        }
+                        else
+                        {
+                            <select name="sexcars" id="sexcars">
+                                @if (Model.SEX == true)
+                                {
+                                    <option value="Nam">Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                }
+                                else
+                                {
+                                    <option value="Nữ">Nữ</option>
+                                    <option value="Nam">Nam</option>
+                                }
+                            </select>
+                        }
+                    </p>
+                </div>
+                <div class="checkout__form__input">
+                    <p>Email: <input name="Email" style="width:300px" type="text" value="@Model.Email"></p>
+                </div>
+                <div class="checkout__form__input">
+                    <p>Địa chỉ: <input name="Address" style="width:300px" type="text" value="@Model.Diachi"></p>
+                </div>
+                <div class="checkout__form__input">
+                    <p>Số điện thoại: <input name="Phone" style="width:300px" type="text" value="@Model.Phone"></p>
+                </div>
+                <input type="submit" value="Lưu" class="site-btn" />
+
+            }
+        </form>
+    </div>
+</section>
+<!--Section container End-->

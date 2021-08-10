@@ -1,0 +1,125 @@
+﻿@model WebDecor.Areas.Admin.Models.CategoryModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row justify-content-center">
+    <div class="card-body p-0">
+        <div class="col-lg-6">
+            <div class="p-5">
+                <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Nhập sản phẩm</h1>
+                </div>
+                @using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <form>
+
+                        @if (ViewBag.WrongInput != null)
+                        {
+                            <div class="alert alert-danger" role="alert">@ViewBag.WrongInput</div>
+                        }
+                        @if (ViewBag.WrongMade != null)
+                        {
+                            <div class="alert alert-danger" role="alert">@ViewBag.WrongMade</div>
+                        }
+                        @if (ViewBag.WrongPrice != null)
+                        {
+                            <div class="alert alert-danger" role="alert">@ViewBag.WrongPrice</div>
+                        }
+                        @if (ViewBag.WrongCate != null)
+                        {
+                            <div class="alert alert-danger" role="alert">@ViewBag.WrongCate</div>
+                        }
+                        @if (ViewBag.WrongSale != null)
+                        {
+                            <div class="alert alert-danger" role="alert">@ViewBag.WrongSale</div>
+                        }
+                        @if (ViewBag.WrongImg != null)
+                        {
+                            <div class="alert alert-danger" role="alert">@ViewBag.WrongImg</div>
+                        }
+                        <div class="form-group">
+                            <p>Nhập tên sản phẩm:</p>
+                            @Html.TextBoxFor(model => model.productName, htmlAttributes: new { @class = "form-control" }) @ViewData["ErrorName"]
+                            @*<input class="form-control">*@
+                        </div>
+                        @*<div class="form-group">
+                                <p>Xuất xứ</p>
+                                <div class="dropdown mb-4">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Dropdown
+                                    </button>
+                                    <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div class="form-group">
+                            <p>Xuất xứ:</p>
+                            @Html.DropDownListFor(m => m.made,
+                                new SelectList(Model.MadeFrom, "ID", "MadeName"), "", htmlAttributes: new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <p>Thông tin</p>
+                            @Html.TextBoxFor(model => model.info, htmlAttributes: new { @class = "form-control" })
+                            @*<input class="form-control">*@
+                        </div>
+                        <div class="form-group">
+                            <p>Mô tả sản phẩm</p>
+                            @Html.TextBoxFor(model => model.des, htmlAttributes: new { @class = "form-control" })
+                            @*<input class="form-control">*@
+                        </div>
+                        <div class="form-group">
+                            <p>Giá</p>
+                            @Html.TextBoxFor(model => model.price, htmlAttributes: new { @class = "form-control", pattern = "[0-9]+" })
+                            @*<input class="form-control">*@
+                        </div>
+                        <div class="form-group">
+                            <p>Danh mục</p>
+                            @Html.DropDownListFor(m => m.category,
+                                new SelectList(Model.Categories, "ID", "CategoryName"), "", htmlAttributes: new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <p>Sale</p>
+                            @Html.TextBoxFor(model => model.sale, htmlAttributes: new { @class = "form-control", pattern = "[0-9]+" })
+                            @*<input class="form-control">*@
+                        </div>
+                        <div class="form-group">
+                            <p>Hình ảnh</p>
+                            <input type="file" name="file" id="file" />
+                            @*<input class="form-control">*@
+                        </div>
+                        <div class="form-group">
+                            <p>Số lượng</p>
+                            @Html.TextBoxFor(model => model.sl, htmlAttributes: new { @class = "form-control", pattern = "[0-9]+" })
+                            @*<input class="form-control">*@
+                        </div>
+                        <div class="form-group">
+                            <p>Freeship:</p>
+                            @Html.CheckBoxFor(model => model.freeship, htmlAttributes: new { @class = "from-control" })
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#" class="btn btn-success btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <input type="submit" value="Create" class="btn btn-default" />
+                                @*<span title="Thêm" class="text">Thêm</span>*@
+                            </a>
+                        </div>
+                        <hr>
+                    </form>
+                }
+
+
+            </div>
+        </div>
+    </div>
+
+</div>

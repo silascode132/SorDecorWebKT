@@ -1,0 +1,135 @@
+﻿@model PagedList.IPagedList<WebDecor.DATA.EF.Product>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Shop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Home</a>
+                    <span>Shop</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- Shop Section Begin -->
+<form action="/Home/ProductForPrice" method="post">
+    <section class="shop spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="shop__sidebar">
+                        <div class="sidebar__categories">
+                            <div class="section-title">
+                                <h4>DANH MỤC</h4>
+                            </div>
+                            @Html.Action("Category", "Home")
+
+                        </div>
+                        <div class="sidebar__filter">
+                            <div class="section-title">
+                                <h4>Tìm kiếm theo giá</h4>
+                            </div>
+                            <div>
+                                <p>Giá:</p>
+                                <div>
+                                    <div class="row">
+
+                                        <input placeholder="Min" min="0" class="col-md-5" name="min" type="text" required pattern="[0-9]+"> - 
+                                        <input placeholder="Max" class="col-md-5" name="max" type="text" required pattern="[0-9]+">
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <input class="site-btn" type="submit" value="Lọc"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            if (item.STT != false)
+                            {
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="product__item">
+                                        <div class="product__item__pic set-bg" data-setbg="@item.Images">
+                                            @if (item.Category == "Trangtri")
+                                            {
+                                                <div class="label trangtri">Trang trí</div>
+                                            }
+                                            else if (item.Category == "Postcard")
+                                            {
+                                                <div class="label stockblue">PostCard</div>
+                                            }
+                                            else if (item.Category == "Quanao")
+                                            {
+                                                <div class="label stockout">Quần áo</div>
+                                            }
+                                            else if (item.Category == "Giadung")
+                                            {
+                                                <div class="label new">Gia dụng</div>
+                                            }
+                                            else if (((float?)@item.Sale).ToString() != "0")
+                                            {
+                                                <div class="label sale">-@((float?)item.Sale)%</div>
+                                            }
+
+                                            <ul class="product__hover">
+                                                <li><a href="@Url.Action("ProductDetails", "Home", new { id = item.ID})"><span class="fas fa-search"></span></a></li>
+                                                <li><a href="@Url.Action("AddItem", "Cart", new { @productId = item.ID, @SL = 1 })"><span class="fas fa-shopping-cart"></span></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="product__item__text">
+                                            <h6><a href="@Url.Action("ProductDetails", "Home", new { id = item.ID})">@item.ProductName</a></h6>
+                                            <div class="rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            @if (((float?)@item.Sale).ToString() != "0")
+                                            {
+                                                <div class="product__price" style="color: #FF4646">@((float?)item.Price - ((float?)item.Price * (float?)item.Sale / 100)) <sup><del>@((float?)item.Price)</del></sup> VNĐ</div>
+                                            }
+                                            else
+                                            {
+                                                <div class="product__price">
+                                                    <script>
+                                                var price = new Number(@((long?)item.Price));
+                                                var myObj = {
+                                                    style: "currency",
+                                                    currency: "VND"
+                                                }
+
+                                                document.write(price.toLocaleString("vi-VN", myObj));
+                                                    </script>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        <div class="col-lg-12 text-center">
+                            <div class="pagination__option">
+                                @Html.PagedListPager(Model, page => Url.Action("Shop", new { page }))
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+<!-- Shop Section End -->
