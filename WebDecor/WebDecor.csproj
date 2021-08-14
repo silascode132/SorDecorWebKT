@@ -623,6 +623,7 @@
     <Content Include="Views\Profile\MyOrder.cshtml" />
     <Content Include="Views\Profile\ChangedPass.cshtml" />
     <Content Include="Views\PageNotFound\Index.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

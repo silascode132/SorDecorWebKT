@@ -11,6 +11,7 @@ CREATE TABLE UserAccounts
 	UserName VARCHAR(50) NOT NULL,
 	Pass NVARCHAR(MAX),
 	Email NVARCHAR(MAX),
+	EmailConfirmed BIT DEFAULT 0,
 	FirstName NVARCHAR(50),
 	LastName NVARCHAR(50) NOT NULL,
 	Sex BIT,

@@ -31,6 +31,7 @@ namespace WebDecor.Controllers
         
         public ActionResult ProductDetails(string id)
         {
+            data = new SorDbContext();
             var model = new ProductDetailsModel();
             var product = data.Products.SingleOrDefault(x => x.ID == id);
             var cate = data.Categories.SingleOrDefault(x => x.ID == product.Category).CategoryName;
@@ -77,6 +78,13 @@ namespace WebDecor.Controllers
             return PartialView(category);
         }
 
+        public ActionResult RecommendProduct()
+        {
+            
+
+            return PartialView();
+        }
+
         public ActionResult ProductForCate(int id)
         {
             int page = 1;
@@ -105,6 +113,17 @@ namespace WebDecor.Controllers
                 max = num1;
             }
             var model = dao.ListPaginForPage(page, pagesize, min, max);
+
+            return View(model);
+        }
+        [HttpGet]
+        public ActionResult Search(FormCollection collection)
+        {
+            int page = 1;
+            int pagesize = 9;
+            var key = collection["textKeyword"];
+            var dao = new ProductDAO();
+            var model = dao.ListPagingForSearch(page, pagesize, key);
 
             return View(model);
         }

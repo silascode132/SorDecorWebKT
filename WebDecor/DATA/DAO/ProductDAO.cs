@@ -34,5 +34,11 @@ namespace WebDecor.DATA.DAO
             var Productmin = Productmax.Where(x => x.Price >= min).ToList();
             return Productmin.OrderByDescending(x => x.Price).ToPagedList(page, pageSize);
         }
+
+        public IEnumerable<Product> ListPagingForSearch(int page, int pageSize, string keyword)
+        {
+            var lst = data.Products.Where(x => x.ProductName.Contains(keyword)).ToList();
+            return lst;
+        }
     }
 }

@@ -37,6 +37,7 @@
 </head>
 
 <body>
+
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -101,7 +102,7 @@
                                         <a href="@Url.Action("Index", "Profile")">
                                             <i class="far fa-user"></i>
                                             <b>@Session["UserName"].ToString()</b>
-                                        </a> | 
+                                        </a> |
                                     </span>
 
                                     @Html.ActionLink("Đăng xuất", "Logout", "User")
@@ -218,8 +219,10 @@
     <div class="search-model">
         <div class="h-100 d-flex align-items-center justify-content-center">
             <div class="search-close-switch">+</div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
+            <form action="/Home/Search" method="get" class="search-model-form">
+                @*<input type="text" name="textKeyword" placeholder="Search here.....">*@
+                <input name="textKeyword" type="text" placeholder="Search here....." />
+                <button type="submit" class="btn btn-dark">Tìm kiếm</button>
             </form>
         </div>
     </div>
@@ -252,7 +255,8 @@
     <script src="~/Assets/Client/vendor/datatables/dataTables.bootstrap4.min.js"></script>-->
     <!-- Messenger Chat plugin Code -->
     <div id="fb-root"></div>
-
+    <!--CMT Facebook-->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=796548831007310&autoLogAppEvents=1" nonce="uWSf1tFn"></script>
     <!-- Your Chat plugin code -->
     <div id="fb-customer-chat" class="fb-customerchat">
     </div>
