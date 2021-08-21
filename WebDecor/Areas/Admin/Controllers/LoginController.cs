@@ -50,7 +50,7 @@ namespace WebDecor.Areas.Admin.Controllers
                     userSession.userName = user.UserName;
                     userSession.userID = user.ID;
 
-                    Session.Add(CommonConstants.USER_SESSION, userSession);
+                    Session.Add(AdminCommonConstants.ADMIN_SESSION, userSession);
                     return RedirectToAction("Index", "AdminHome");
 
                 }

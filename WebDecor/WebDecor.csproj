@@ -152,6 +152,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Code\AdminSession.cs" />
+    <Compile Include="Areas\Admin\Code\AdminCommonConstants.cs" />
     <Compile Include="Areas\Admin\Code\HelperAdminSession.cs" />
     <Compile Include="Areas\Admin\Common\AdminUserLogin.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminBaseController.cs" />
@@ -163,10 +164,10 @@
     <Compile Include="Areas\Admin\Controllers\PendingOrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Data\DAO\PendingOrderDAO.cs" />
-    <Compile Include="Areas\Admin\Data\DAO\ProductDAO.cs" />
     <Compile Include="Areas\Admin\Data\DAO\StatisDAO.cs" />
     <Compile Include="Areas\Admin\Models\CategoryModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginAdminModel.cs" />
+    <Compile Include="Areas\Admin\Models\ProductEditModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductModel.cs" />
     <Compile Include="Areas\Admin\Models\RevenuePerMonthModel.cs" />
     <Compile Include="Code\CommonConstants.cs" />
@@ -192,15 +193,12 @@
     <Compile Include="DATA\EF\Cart.cs" />
     <Compile Include="DATA\EF\Category.cs" />
     <Compile Include="DATA\EF\Feedback.cs" />
-    <Compile Include="DATA\EF\ImgRate.cs" />
     <Compile Include="DATA\EF\ItemInCart.cs" />
     <Compile Include="DATA\EF\Made.cs" />
     <Compile Include="DATA\EF\OrderBill.cs" />
     <Compile Include="DATA\EF\OrderInfo.cs" />
     <Compile Include="DATA\EF\Product.cs" />
-    <Compile Include="DATA\EF\Rating.cs" />
     <Compile Include="DATA\EF\RoleAdmin.cs" />
-    <Compile Include="DATA\EF\Size.cs" />
     <Compile Include="DATA\EF\SorDbContext.cs" />
     <Compile Include="DATA\EF\UserAccount.cs" />
     <Compile Include="DBContext\AccountModel.cs" />
@@ -501,6 +499,7 @@
     <Content Include="Assets\Admin\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
     <Content Include="Template\NewOrder.html" />
+    <Content Include="Template\RepFeedback.html" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Assets\Client\sass\style.scss" />
     <Content Include="Assets\Client\sass\_base.scss" />
@@ -580,6 +579,8 @@
     <Content Include="Assets\Client\login\fonts\Montserrat\Montserrat-SemiBoldItalic.ttf" />
     <Content Include="Assets\Client\login\fonts\Montserrat\Montserrat-Thin.ttf" />
     <Content Include="Assets\Client\login\fonts\Montserrat\Montserrat-ThinItalic.ttf" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Feedback\SendFeedBack.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

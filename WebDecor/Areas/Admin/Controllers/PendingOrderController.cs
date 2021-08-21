@@ -10,7 +10,7 @@ namespace WebDecor.Areas.Admin.Controllers
 {
     public class PendingOrderController : Controller
     {
-        SorDbContext data = null;
+        private SorDbContext data = null;
         // GET: Admin/PendingOrder
         public ActionResult Index()
         {

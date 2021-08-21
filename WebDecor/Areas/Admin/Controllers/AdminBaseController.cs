@@ -13,7 +13,7 @@ namespace WebDecor.Areas.Admin.Controllers
     {
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var session = (AdminUserLogin)Session[CommonConstants.USER_SESSION];
+            var session = (AdminUserLogin)Session[AdminCommonConstants.ADMIN_SESSION];
             if (session == null)
             {
                 filterContext.Result = new RedirectToRouteResult(new

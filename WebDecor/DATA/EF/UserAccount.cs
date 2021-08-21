@@ -14,7 +14,6 @@ namespace WebDecor.DATA.EF
             Carts = new HashSet<Cart>();
             Feedbacks = new HashSet<Feedback>();
             OrderBills = new HashSet<OrderBill>();
-            Ratings = new HashSet<Rating>();
         }
 
         public string ID { get; set; }
@@ -54,8 +53,5 @@ namespace WebDecor.DATA.EF
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderBill> OrderBills { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rating> Ratings { get; set; }
     }
 }

@@ -13,7 +13,6 @@ namespace WebDecor.DATA.EF
         {
             ItemInCarts = new HashSet<ItemInCart>();
             OrderInfoes = new HashSet<OrderInfo>();
-            Ratings = new HashSet<Rating>();
         }
 
         public string ID { get; set; }
@@ -28,8 +27,6 @@ namespace WebDecor.DATA.EF
         public string Descript { get; set; }
 
         public decimal? Price { get; set; }
-
-        public long? Size { get; set; }
 
         public decimal Sale { get; set; }
 
@@ -57,10 +54,5 @@ namespace WebDecor.DATA.EF
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderInfo> OrderInfoes { get; set; }
-
-        public virtual Size Size1 { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rating> Ratings { get; set; }
     }
 }

@@ -16,7 +16,8 @@ namespace WebDecor.Areas.Admin.Data.DAO
 
         public decimal RevenueMonth()
         {
-            decimal res = data.Database.SqlQuery<decimal>("sp_EarningPerMonth").SingleOrDefault();
+            var res = data.Database.SqlQuery<decimal>("sp_EarningPerMonth").SingleOrDefault();
+            
             return res;
         }
 

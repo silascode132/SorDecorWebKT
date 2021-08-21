@@ -13,21 +13,28 @@ GO
 /* -- Categories --*/
 INSERT INTO dbo.Categories VALUES (N'Trang trí', 1)
 GO
+INSERT INTO dbo.Categories VALUES (N'Gia dụng', 1)
+GO
 INSERT INTO dbo.Categories VALUES (N'PostCard', 1)
 GO
 INSERT INTO dbo.Categories VALUES (N'Quần áo', 1)
 GO
-INSERT INTO dbo.Categories VALUES (N'Gia dụng', 1)
-GO
+
 
 /* -- Categories --*/
 INSERT INTO dbo.Mades(MadeName) VALUES (N'Trung Quốc')
-
+GO
+INSERT INTO dbo.Mades(MadeName) VALUES (N'Việt Nam')
+GO
+INSERT INTO dbo.Mades(MadeName) VALUES (N'Nhật Bản')
+GO
+INSERT INTO dbo.Mades(MadeName) VALUES (N'Thái Lan')
+GO
 /* -- Sản phẩm -- */
 sp_AutoID_Product 
-@ProductName = N'Hoa Khô', 
-@Made = 1, 
-@Info = N'Những bông hoa chọn lọc được sấy khô qua những công đoạn khắt khe', 
+@ProductName = N'Hoa Khô',
+@Made = 1,
+@Info = N'Những bông hoa chọn lọc được sấy khô qua những công đoạn khắt khe',
 @Descript = N'Khi bạn không có thời gian nhưng vẫn muốn “make color” cho căn phòng thêm sức sống, hoa khô sẽ là lựa chọn hợp lý cho bạn',
 @Price = 200000,
 @Size = NULL,

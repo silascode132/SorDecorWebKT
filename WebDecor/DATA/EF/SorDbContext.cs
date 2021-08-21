@@ -16,15 +16,12 @@ namespace WebDecor.DATA.EF
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
-        public virtual DbSet<ImgRate> ImgRates { get; set; }
         public virtual DbSet<ItemInCart> ItemInCarts { get; set; }
         public virtual DbSet<Made> Mades { get; set; }
         public virtual DbSet<OrderBill> OrderBills { get; set; }
         public virtual DbSet<OrderInfo> OrderInfoes { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<RoleAdmin> RoleAdmins { get; set; }
-        public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -59,10 +56,6 @@ namespace WebDecor.DATA.EF
 
             modelBuilder.Entity<Feedback>()
                 .Property(e => e.Phone)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ImgRate>()
-                .Property(e => e.ImageUrl)
                 .IsUnicode(false);
 
             modelBuilder.Entity<ItemInCart>()
@@ -147,29 +140,11 @@ namespace WebDecor.DATA.EF
                 .WithRequired(e => e.Product)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Rating>()
-                .Property(e => e.ProductID)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Rating>()
-                .Property(e => e.UserAccount)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Rating>()
-                .HasMany(e => e.ImgRates)
-                .WithOptional(e => e.Rating)
-                .HasForeignKey(e => e.RateID);
-
             modelBuilder.Entity<RoleAdmin>()
                 .HasMany(e => e.Admins)
                 .WithRequired(e => e.RoleAdmin1)
                 .HasForeignKey(e => e.RoleAdmin)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Size>()
-                .HasMany(e => e.Products)
-                .WithOptional(e => e.Size1)
-                .HasForeignKey(e => e.Size);
 
             modelBuilder.Entity<UserAccount>()
                 .Property(e => e.ID)
@@ -196,11 +171,6 @@ namespace WebDecor.DATA.EF
                 .WithRequired(e => e.UserAccount)
                 .HasForeignKey(e => e.UserID)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<UserAccount>()
-                .HasMany(e => e.Ratings)
-                .WithOptional(e => e.UserAccount1)
-                .HasForeignKey(e => e.UserAccount);
         }
     }
 }

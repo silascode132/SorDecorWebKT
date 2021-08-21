@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model WebDecor.Areas.Admin.Models.ProductEditModel
+
+
+<h2>Cập nhật</h2>
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post))
+{
+    if (ViewBag.WrongName != null)
+    {
+        <div class="card mb-4 border-left-danger">
+            <div class="card-body">
+                @ViewBag.WrongName
+            </div>
+        </div>
+
+    }
+    else if (ViewBag.WrongMade != null)
+    {
+        <div class="card mb-4 border-left-danger">
+            <div class="card-body">
+                @ViewBag.WrongMade
+            </div>
+        </div>
+
+    }
+    else if (ViewBag.WrongCate != null)
+    {
+        <div class="card mb-4 border-left-danger">
+            <div class="card-body">
+                @ViewBag.WrongCate
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-1">
+            <p>Mã sản phẩm:</p>
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(model => model.productID, new { @readonly = "readonly" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1">
+            <p>Tên sản phẩm: </p>
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(model => model.productName, htmlAttributes: new { @class = "form-control", @style = "width: 500px" })
+        </div>
+    </div>
+
+    <br />
+    <div class="row">
+        <div class="col-md-1">
+            <p>Xuất xứ: </p>
+        </div>
+        <div class="col-md-2">
+            @Html.DropDownListFor(model => model.made,
+                new SelectList(Model.mades, "ID", "MadeName"), "", htmlAttributes: new { @class = "form-control", @style = "width: 500px" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1">
+            <p>Danh mục: </p>
+        </div>
+        <div class="col-md-2">
+            @Html.DropDownListFor(model => model.category,
+                new SelectList(Model.categories, "ID", "CategoryName"), "", htmlAttributes: new { @class = "form-control", @style = "width: 500px" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1">
+            <p>Thông tin: </p>
+        </div>
+        <div class="col-md-1">
+            @Html.TextAreaFor(model => model.productInfo, htmlAttributes: new { @class = "form-control", @style = "width: 500px; height: 100px" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1">
+            <p>Description: </p>
+        </div>
+        <div class="col-md-1">
+            @Html.TextAreaFor(model => model.productDes, htmlAttributes: new { @class = "form-control", @style = "width: 500px; height: 100px" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1">
+            <p>Giá: </p>
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(model => model.productPrice, htmlAttributes: new { @class = "form-control", @pattern = "[0-9.]+" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1">
+            <p>Sale: </p>
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(model => model.productSale, htmlAttributes: new { @class = "form-control", @pattern = "[0-9.]+" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1">
+            <p>Số lượng: </p>
+        </div>
+        <div class="col-md-1">
+            @Html.TextBoxFor(model => model.productSL, htmlAttributes: new { @class = "form-control", @pattern = "[0-9]+" })
+        </div>
+    </div>
+
+    <input class="btn btn-success btn-sm" type="submit" value="Sửa" />
+
+    <a title="Xóa" data-toggle="modal" data-target="#confirm" class="btn btn-danger btn-sm" href="@Url.Action("Delete", "Product", new { id = Model.productID})"><i class="fas fa-trash-alt"></i> | Xóa</a>
+}
+<div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông báo!</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Bạn chắc chắn muốn xóa sản phẩm này không?</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
+                <a class="btn btn-danger" href="@Url.Action("Delete", "Product", new { ID = Model.productID})">Xóa</a>
+            </div>
+        </div>
+    </div>
+</div>
+

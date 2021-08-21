@@ -21,14 +21,14 @@ namespace WebDecor.Areas.Admin.Controllers
         }
         public ActionResult Index()
         {
-            //decimal revenueMonth = new StatisDAO().RevenueMonth();
-            //ViewBag.revenueMonth = revenueMonth;
-            //decimal revenueYear = new StatisDAO().RevenueYear();
-            //ViewBag.revenueYear = revenueYear;
-            //int pending = data.OrderBills.Count(x => x.DeliverySTT == false);
-            //ViewBag.PendingTask = pending;
-            //int feedback = data.Feedbacks.Count();
-            //ViewBag.Feedback = feedback;
+            decimal revenueMonth = new StatisDAO().RevenueMonth();
+            ViewBag.revenueMonth = revenueMonth;
+            decimal revenueYear = new StatisDAO().RevenueYear();
+            ViewBag.revenueYear = revenueYear;
+            int pending = data.OrderBills.Count(x => x.DeliverySTT == false);
+            ViewBag.PendingTask = pending;
+            int feedback = data.Feedbacks.Count();
+            ViewBag.Feedback = feedback;
 
 
             //RevenuePerMonthModel model = new RevenuePerMonthModel();
@@ -40,7 +40,7 @@ namespace WebDecor.Areas.Admin.Controllers
             //    model.day = i + 1;
             //    model.revenue = 
             //}
-            
+
             //try
             //{
             //    //ViewBag.

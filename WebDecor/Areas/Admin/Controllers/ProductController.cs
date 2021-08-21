@@ -18,16 +18,6 @@ namespace WebDecor.Areas.Admin.Controllers
             data = new SorDbContext();
 
             var products = data.Products.OrderByDescending(x => x.ID);
-            //ProductModel product = new ProductModel();
-            //foreach (var item in bill)
-            //{
-            //    product.id = item.ID;
-            //    product.productName = item.ProductName;
-            //    var made = data.Mades.FirstOrDefault(x => x.ID == item.Made).MadeName;
-            //    product.made = made;
-            //}
-
-            ////var model = iplProduct.ListAll();
             List<ProductModel> lst = new List<ProductModel>();
             foreach (var item in products)
             {
@@ -88,7 +78,7 @@ namespace WebDecor.Areas.Admin.Controllers
                 ViewBag.WrongInput = "Nhập đầy đủ thông tin sản phẩm!";
                 return this.Create();
             }
-            else if (model.made == 0 )
+            else if (model.made == 0)
             {
                 ViewBag.WrongMade = "Nhập nơi cung cấp sản phẩm";
                 return this.Create();
@@ -125,11 +115,9 @@ namespace WebDecor.Areas.Admin.Controllers
 
                 product.ID = "0";
                 product.ProductName = Name;
-                //product.Made = Made;
                 product.Info = Info;
                 product.Descript = Des;
                 product.Price = Price;
-                //product.Size = Size;
                 if (model.sale.ToString() == null)
                 {
                     product.Sale = 0;
@@ -149,60 +137,68 @@ namespace WebDecor.Areas.Admin.Controllers
                 data.SaveChanges();
                 ViewBag.Success = "Thêm sản phẩm thành công!";
                 return this.Create();
-
-
             }
-            
+
         }
 
         [HttpGet]
-        public ActionResult Update(string id)
+        public ActionResult Edit(string id)
         {
             data = new SorDbContext();
-            Product product = data.Products.Single(x => x.ID == id);
-            return View(product);
+            Product product = data.Products.SingleOrDefault(x => x.ID == id);
+
+            var test = id;
+            var model = new ProductEditModel
+            {
+                productID = product.ID,
+                productName = product.ProductName,
+                mades = data.Mades.ToList(),
+                categories = data.Categories.ToList(),
+                productInfo = product.Info,
+                productDes = product.Descript,
+                productPrice = (decimal)product.Price,
+                productSale = (decimal)product.Sale,
+                productSL = product.SL,
+                category = product.Category,
+                made = product.Made,
+            };
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult Edit(FormCollection collection)
+        public ActionResult Edit(ProductEditModel model)
         {
-            data = new SorDbContext();
-            string id = collection["productID"];
-            Product product = data.Products.Single(x => x.ID.Equals(id));
-            product.ProductName = collection["productName"];
-            product.Info = collection["productInfo"];
-            product.Descript = collection["productDes"];
-            product.Price = decimal.Parse(collection["productPrice"]);
-            if (collection["productSize"] == "")
-            {
-                product.Size = null;
-            }
-            else
-            {
-                //product.Size = collection["productSize"];
-            }
 
-            if (collection["productSale"] == "")
+            if (model.productName == "" || model.productName == null)
             {
-                product.Sale = 0;
+                ViewBag.WrongName = "Nhập tên sản phẩm";
+                return this.Edit(model.productID);
+            }
+            else if (model.made == 0)
+            {
+                ViewBag.WrongMade = "Chọn nơi xuất xứ";
+                return this.Edit(model.productID);
+            }
+            else if (model.category == 0)
+            {
+                ViewBag.WrongCate = "Chọn danh mục sản phẩm";
+                return this.Edit(model.productID);
             }
             else
             {
-                product.Sale = decimal.Parse(collection["productSale"]);
-            }
-            product.SL = int.Parse(collection["productSL"]);
-            if (collection["productPromotions"] == "")
-            {
-                //product.Promotions = null;
-            }
-            else
-            {
-                //product.Promotions = collection["productPromotions"];
-            }
-            //product.Images = collection["productImages"];
+                data = new SorDbContext();
+                string id = model.productID;
+                Product product = data.Products.Single(x => x.ID.Equals(id));
+                product.ProductName = model.productName;
+                product.Info = model.productInfo;
+                product.Descript = model.productDes;
+                product.Price = model.productPrice;
+                product.Sale = model.productSale;
+                product.SL = model.productSL;
 
-            data.SaveChanges();
-            return RedirectToAction("Product", "Admin");
+                data.SaveChanges();
+                return RedirectToAction("Index", "Product");
+            }
         }
 
 

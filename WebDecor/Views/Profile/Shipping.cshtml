@@ -69,7 +69,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td><a href="#"><b>@item.ID</b></a></td>
+                        <td><a href="@Url.Action("InfoOrder", "Order", new { ID = item.ID})"><b>@item.ID</b></a></td>
                         <td>@item.UserName</td>
                         <td>@item.UserAddress</td>
                         <td>@item.Phone</td>

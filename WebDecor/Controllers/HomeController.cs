@@ -43,14 +43,6 @@ namespace WebDecor.Controllers
             model.info = product.Info;
             model.des = product.Descript;
             model.price = (decimal)product.Price;
-            if (product.Size == null)
-            {
-                model.size = 0;
-            }
-            else
-            {
-                model.size = (long)product.Size;
-            }
             model.sale = product.Sale;
             model.category = cate;
             model.freeShip = (bool)product.Freeship;

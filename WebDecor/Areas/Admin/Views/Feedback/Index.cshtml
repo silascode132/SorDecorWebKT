@@ -47,7 +47,7 @@
                             <td>@item.Email</td>
                             <td>@item.Content</td>
                             <td>@item.CreatedDate</td>
-                            <td><a title="Đã phản hồi" class="btn btn-success btn-sm" href="@Url.Action("Done", "Feedback", new { id = item.ID})"><i class="fas fa-check"></i> Đã phản hồi</a></td>
+                            <td><a title="Gửi phản hồi" class="btn btn-success btn-sm" href="@Url.Action("SendFeedBack", "Feedback", new { id = item.ID})"><i class="fas fa-check"></i> Gửi phản hồi</a></td>
                         </tr>
                     }
                 </tbody>

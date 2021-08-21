@@ -156,10 +156,12 @@ namespace WebDecor.Controllers
                     total += orderitem.Total;
                     data.OrderInfoes.Add(orderitem);
                     data.ItemInCarts.Remove(item);
-                    var update = new OrderDAO().UpdateSL(id);
+                    
                 }
+                
 
                 data.SaveChanges();
+                var update = new OrderDAO().UpdateSL(id);
 
                 string content = System.IO.File.ReadAllText(Server.MapPath("~/Template/NewOrder.html"));
 
@@ -206,15 +208,21 @@ namespace WebDecor.Controllers
                 }
                 else
                 {
-                    var bill = data.OrderInfoes.Where(x => x.ItemOrder.Equals(ID)).ToList();
+                    var bill = data.OrderInfoes.Where(x => x.ItemOrder.Equals(ID));
                     var info = data.OrderBills.Single(x => x.ID == ID);
                     ViewBag.UserName = info.UserName;
                     ViewBag.Addresss = info.UserAddress;
                     ViewBag.Phone = info.Phone;
-                    ViewBag.Note = info.Note;
+                    if (info.Note == "NULL")
+                    {
+                        ViewBag.Note = "Không có";
+                    }
+                    else
+                    {
+                        ViewBag.Note = info.Note;
+                    }
                     ViewBag.DateOrder = info.DateOrder;
                     ViewBag.IDOrder = ID;
-                    ViewBag.SL = data.OrderInfoes.Where(x => x.ItemOrder == ID).Count();
                     return View(bill);
                 }
             }
