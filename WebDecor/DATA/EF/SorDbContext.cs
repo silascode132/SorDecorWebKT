@@ -22,6 +22,7 @@ namespace WebDecor.DATA.EF
         public virtual DbSet<OrderInfo> OrderInfoes { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<RoleAdmin> RoleAdmins { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

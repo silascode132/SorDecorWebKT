@@ -159,6 +159,7 @@ Created: Colorib
 		mm = String(mm).padStart(2, '0');
 	}
 	var timerdate = mm + '/' + dd + '/' + yyyy;
+
 	// For demo preview end
 
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,10 +15,12 @@ namespace WebDecor.Areas.Admin.Controllers
     public class AdminHomeController : AdminBaseController
     {
         SorDbContext data = null;
+        JsonSerializerSettings _jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
         // GET: Admin/Home
         public AdminHomeController()
         {
             data = new SorDbContext();
+
         }
         public ActionResult Index()
         {
@@ -30,26 +33,7 @@ namespace WebDecor.Areas.Admin.Controllers
             int feedback = data.Feedbacks.Count();
             ViewBag.Feedback = feedback;
 
-
-            //RevenuePerMonthModel model = new RevenuePerMonthModel();
-            //int today = DateTime.Now.Day;
-            //var x = data.Admins.Where(m => m.ID == Session["UserID"].ToString());
-            //var y = x.Where(m=>m.RoleAdmin==)
-            //for (int i = 0; i < today; i++)
-            //{
-            //    model.day = i + 1;
-            //    model.revenue = 
-            //}
-
-            //try
-            //{
-            //    //ViewBag.
-            //}
-            //catch (Exception)
-            //{
-
-            //    throw;
-            //}
+            ViewBag.DataPoints = JsonConvert.SerializeObject(DataService.GetData(), _jsonSetting);
 
 
             return View();

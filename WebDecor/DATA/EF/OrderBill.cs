@@ -41,8 +41,6 @@ namespace WebDecor.DATA.EF
 
         public DateTime? DeliveryDate { get; set; }
 
-        public bool? Rated { get; set; }
-
         public string Email { get; set; }
 
         public virtual UserAccount UserAccount { get; set; }

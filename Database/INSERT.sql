@@ -10,15 +10,7 @@ GO
 /* ============ INSERT ============ 
    ==================================	 */
 
-/* -- Categories --*/
-INSERT INTO dbo.Categories VALUES (N'Trang trí', 1)
-GO
-INSERT INTO dbo.Categories VALUES (N'Gia dụng', 1)
-GO
-INSERT INTO dbo.Categories VALUES (N'PostCard', 1)
-GO
-INSERT INTO dbo.Categories VALUES (N'Quần áo', 1)
-GO
+   
 
 
 /* -- Categories --*/

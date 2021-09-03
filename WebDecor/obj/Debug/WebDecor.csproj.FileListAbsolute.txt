@@ -276,3 +276,4 @@ C:\Users\hoang\OneDrive\Máy tính\SorDecorWeb-MVC\WebDecor\obj\Debug\WebDecor.c
 C:\Users\hoang\OneDrive\Máy tính\SorDecorWeb-MVC\WebDecor\obj\Debug\WebDecor.csproj.CopyComplete
 C:\Users\hoang\OneDrive\Máy tính\SorDecorWeb-MVC\WebDecor\obj\Debug\WebDecor.dll
 C:\Users\hoang\OneDrive\Máy tính\SorDecorWeb-MVC\WebDecor\obj\Debug\WebDecor.pdb
+C:\Users\hoang\OneDrive\Máy tính\SorDecorWeb-MVC\WebDecor\obj\Debug\WebDecor.csproj.AssemblyReference.cache

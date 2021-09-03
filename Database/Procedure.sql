@@ -78,7 +78,7 @@ AS
 BEGIN
 	DECLARE @IDafter VARCHAR(128)
 
-	INSERT INTO dbo.OrderBills VALUES (0, @UserID, @UserName, @UserAddress, @Phone, @Note, @Paid, 0, @DateOrder, NULL, 0, @Email)
+	INSERT INTO dbo.OrderBills VALUES ('0', @UserID, @UserName, @UserAddress, @Phone, @Note, @Paid, 0, @DateOrder, null, @Email)
 	SELECT @IDafter = ID FROM dbo.OrderBills WHERE DateOrder = @DateOrder AND UserID = @UserID
 	SELECT @IDafter
 END
@@ -207,6 +207,52 @@ BEGIN
 	SET @res = 1
 	SELECT @res
 END
+
+-- PROC tính doanh thu theo ngày
+CREATE PROC sp_CalculateForDay
+@Begin DATETIME,
+@End DATETIME
+AS
+BEGIN
+	DECLARE @tong DECIMAL(19,4)
+	SELECT @tong = SUM(Total)
+	FROM dbo.OrderBills A, dbo.OrderInfo B
+	WHERE A.ID = B.ItemOrder AND (DATEDIFF_BIG(second, @Begin, DeliveryDate) > 0 AND DATEDIFF_BIG(second, DeliveryDate, @End) > 0)
+
+	IF(@tong IS NULL)
+		SELECT @tong = 0
+	SELECT @tong
+END
+
+sp_CalculateForDay @Begin = '2021/08/21 00:00:00', @End = '2021/09/01 00:00:00'
+
+sp_Test @date = '2021/08/21 00:00:00'
+CREATE PROC	sp_Test
+@date DATETIME
+AS
+BEGIN
+	DECLARE @datetime DATETIME
+	SELECT @datetime = @date
+	SELECT @datetime
+END
+
+sp_CalculateForDay @Begin = '2021/08/21 00:00:00', @End = '2021/08/21 23:59:00'
+
+select DATEDIFF(millisecond, DateOrder, DeliveryDate)
+from dbo.OrderBills
+where ID = '20210821HD00001'
+
+SELECT DATEDIFF(MINUTE, '2021/08/21 00:00:00', '2021/08/21 23:59:59')
+select *
+from dbo.OrderBills
+select *
+from dbo.OrderInfo
+select sum(Total)
+from dbo.OrderInfo
+SELECT SUM(Total)
+	FROM dbo.OrderBills A, dbo.OrderInfo B
+	WHERE A.ID = B.ItemOrder AND (DATEDIFF(millisecond, '2021/08/21 00:00:00', DeliveryDate) > 0 AND DATEDIFF(millisecond, DeliveryDate, '2021/08/21 23:59:59') > 0)
+
 
 =============================================================
 -- PROC List SP

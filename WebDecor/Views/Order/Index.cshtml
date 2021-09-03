@@ -25,15 +25,24 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h6 class="coupon__link">
-                    <span class="fas fa-exclamation"></span> Vui lòng cập nhật đầy đủ thông tin cá nhân trước khi tiến hành thanh toán!
-                </h6>
+                @if (ViewBag.WrongSL != null)
+                {
+                    <h6 class="coupon__link">
+                        <span class="fas fa-exclamation"></span> Số lượng sản phẩm có trong cửa hàng không đủ! Vui lòng kiểm tra lại đơn hàng
+                    </h6>
+                }
+                @*else
+                {
+                    <h6 class="coupon__link">
+                        <span class="fas fa-exclamation"></span> Vui lòng cập nhật đầy đủ thông tin cá nhân trước khi tiến hành thanh toán!
+                    </h6>
+                }*@
             </div>
         </div>
         @{
             UserAccount User = (UserAccount)Session["account"];
         }
-        <form action="@Url.Action("Order", "Order")" method="post" class="checkout__form">
+        <form action="@Url.Action("Index", "Order")" method="post" class="checkout__form">
             <div class="row">
                 @using (Html.BeginForm())
                 {

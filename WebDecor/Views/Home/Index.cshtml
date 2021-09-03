@@ -12,14 +12,14 @@
             <div class="col-lg-6 p-0">
 
 
-                <div class="categories__item categories__large__item set-bg" data-setbg="/Assets/Client/img/categories-large-trangtri.jpg">
+                <div class="categories__item categories__large__item set-bg" data-setbg="https://1.bp.blogspot.com/-kld2WdGOuWM/YNvor6GQQsI/AAAAAAAABn0/PN7sw3ad8tc1UiwGImmCh0BOFY2EoV1UACLcBGAsYHQ/s0/categories-large-trangtri.jpg">
                     <div class="categories__text">
                         <h1>Trang trí</h1>
                         <p>
                             Trang trí căn phòng của bạn với phong cách Vintage, những sản phẩm tại cửa hàng mình sẽ
                             giúp bạn!
                         </p>
-                        <a href="/Home/ProductForCate/Trangtri">Xem ngay</a>
+                        <a href="/Home/ProductForCate/1">Xem ngay</a>
                     </div>
                 </div>
 
@@ -34,7 +34,7 @@
                             <div class="categories__text">
                                 <h4>PostCard</h4>
                                 <p>358 sản phẩm</p>
-                                <a href="/Home/ProductForCate/Postcard">Xem ngay</a>
+                                <a href="/Home/ProductForCate/2">Xem ngay</a>
                             </div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                             <div class="categories__text">
                                 <h4>Quần áo</h4>
                                 <p>273 sản phẩm</p>
-                                <a href="/Home/ProductForCate/Quanao">Xem ngay</a>
+                                <a href="/Home/ProductForCate/3">Xem ngay</a>
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                             <div class="categories__text">
                                 <h4>Gia dụng</h4>
                                 <p>159 sản phẩm</p>
-                                <a href="/Home/ProductForCate/Giadung">Xem ngay</a>
+                                <a href="/Home/ProductForCate/4">Xem ngay</a>
                             </div>
                         </div>
                     </div>
@@ -132,11 +132,11 @@
                             </div>
                         </div>
                     }
-                    else if (item.Category == 4)
+                    else if (item.Category == 2)
                     {
                         <div class="col-lg-3 col-md-4 col-sm-6 mix Giadung">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="@item.ImageUrl">
+                                <div class="product__item__pic set-bg" data-setbg="/Assets/Client/img/product/@item.ImageUrl">
                                     <div class="label new">Gia dụng</div>
                                     <ul class="product__hover">
                                         <li><a href="@Url.Action("ProductDetails", "Home", new { id = item.ID})"><span class="fas fa-search"></span></a>
@@ -202,11 +202,11 @@
                             </div>
                         </div>
                     }
-                    else if (item.Category == 2)
+                    else if (item.Category == 3)
                     {
                         <div class="col-lg-3 col-md-4 col-sm-6 mix Postcard">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="@item.ImageUrl">
+                                <div class="product__item__pic set-bg" data-setbg="/Assets/Client/img/product/@item.ImageUrl">
                                     <div class="label stockblue">PostCard</div>
                                     <ul class="product__hover">
                                         <li><a href="@Url.Action("ProductDetails", "Home", new { id = item.ID})"> <!--class="image-popup"--> <span class="fas fa-search"></span></a>
@@ -237,11 +237,11 @@
                             </div>
                         </div>
                     }
-                    else if (item.Category == 3)
+                    else if (item.Category == 4)
                     {
                         <div class="col-lg-3 col-md-4 col-sm-6 mix Quanao">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="@item.ImageUrl">
+                                <div class="product__item__pic set-bg" data-setbg="/Assets/Client/img/product/@item.ImageUrl">
                                     <div class="label stockout">Quần áo</div>
                                     <ul class="product__hover">
                                         <li><a href="@Url.Action("ProductDetails", "Home", new { id = item.ID})"> <!--class="image-popup"--> <span class="fas fa-search"></span></a>
@@ -300,23 +300,23 @@
                         <h5><span>Sale up to</span> 50%</h5>
                     </div>
                     @*<div class="discount__countdown" id="countdown-time">
-                            <div class="countdown__item">
-                                <span>30</span>
-                                <p>Days</p>
-                            </div>
-                            <div class="countdown__item">
-                                <span>1</span>
-                                <p>Hour</p>
-                            </div>
-                            <div class="countdown__item">
-                                <span>19</span>
-                                <p>Min</p>
-                            </div>
-                            <div class="countdown__item">
-                                <span>20</span>
-                                <p>Sec</p>
-                            </div>
-                        </div>*@
+                        <div class="countdown__item">
+                            <span>00</span>
+                            <p>Days</p>
+                        </div>
+                        <div class="countdown__item">
+                            <span>00</span>
+                            <p>Hour</p>
+                        </div>
+                        <div class="countdown__item">
+                            <span>00</span>
+                            <p>Min</p>
+                        </div>
+                        <div class="countdown__item">
+                            <span>20</span>
+                            <p>Sec</p>
+                        </div>
+                    </div>*@
                     <a href="/Home/Shop">Shop now</a>
                 </div>
             </div>

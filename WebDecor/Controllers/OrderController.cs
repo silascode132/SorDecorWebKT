@@ -107,12 +107,12 @@ namespace WebDecor.Controllers
                 ViewBag.TongTien = TongTien();
                 return View(product);
             }
-            
+
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Order(FormCollection collection)
+        public ActionResult Index(FormCollection collection)
         {
             var cart = Session[CartItem];
             data = new SorDbContext();
@@ -140,48 +140,69 @@ namespace WebDecor.Controllers
             orderBill.DateOrder = dt;
             orderBill.DeliveryDate = null;
 
-            string id = new OrderDAO().AddOrder(orderBill);
-            if (id != null)
+
+            var lst = data.ItemInCarts.Where(x => x.CartItemID == cart.ToString()).ToList();
+            int check = 0;
+            int iSL = 0;
+            for (int i = 0; i < lst.Count(); i++)
             {
-                var lst = data.ItemInCarts.Where(x => x.CartItemID == cart.ToString()).ToList();
-
-                foreach (var item in lst)
+                string productID = lst[i].ProductID;
+                iSL = data.Products.FirstOrDefault(x => x.ID == productID).SL;
+                if (lst[i].SL > iSL)
                 {
-                    OrderInfo orderitem = new OrderInfo();
-                    orderitem.ItemOrder = id;
-                    orderitem.ProductID = item.ProductID;
-                    orderitem.SL = int.Parse(item.SL.ToString());
-                    orderitem.Total = decimal.Parse((item.Total * item.SL).ToString());
-
-                    total += orderitem.Total;
-                    data.OrderInfoes.Add(orderitem);
-                    data.ItemInCarts.Remove(item);
-                    
+                    check = 1;
+                    ViewBag.WrongSL = "Số lượng sản phẩm trong cửa hàng không đủ!";
+                    break;
                 }
-                
+            }
 
-                data.SaveChanges();
-                var update = new OrderDAO().UpdateSL(id);
-
-                string content = System.IO.File.ReadAllText(Server.MapPath("~/Template/NewOrder.html"));
-
-                content = content.Replace("{{CustomerName}}", orderBill.UserName);
-                content = content.Replace("{{Phone}}", orderBill.Phone);
-                content = content.Replace("{{Email}}", orderBill.Email);
-                content = content.Replace("{{Address}}", orderBill.UserAddress);
-                content = content.Replace("{{Total}}", total.ToString());
-                var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
-
-                new MailHelper().SendMail(orderBill.Email, "Đơn hàng mới từ SorDecor", content);
-                new MailHelper().SendMail(toEmail, "Đơn hàng mới từ SorDecor", content);
-
-                
-                return RedirectToAction("ConfirmOrder", "Order");
+            if (check != 0)
+            {
+                return this.Index();
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                string id = new OrderDAO().AddOrder(orderBill);
+                if (id != null)
+                {
+                    foreach (var item2 in lst)
+                    {
+                        OrderInfo orderitem = new OrderInfo();
+                        orderitem.ItemOrder = id;
+                        orderitem.ProductID = item2.ProductID;
+                        orderitem.SL = int.Parse(item2.SL.ToString());
+                        orderitem.Total = decimal.Parse((item2.Total * item2.SL).ToString());
+
+                        total += orderitem.Total;
+                        data.OrderInfoes.Add(orderitem);
+                        data.ItemInCarts.Remove(item2);
+
+                    }
+
+                    data.SaveChanges();
+                    var update = new OrderDAO().UpdateSL(id);
+
+                    string content = System.IO.File.ReadAllText(Server.MapPath("~/Template/NewOrder.html"));
+
+                    content = content.Replace("{{CustomerName}}", orderBill.UserName);
+                    content = content.Replace("{{Phone}}", orderBill.Phone);
+                    content = content.Replace("{{Email}}", orderBill.Email);
+                    content = content.Replace("{{Address}}", orderBill.UserAddress);
+                    content = content.Replace("{{Total}}", total.ToString());
+                    var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+
+                    new MailHelper().SendMail(orderBill.Email, "Đơn hàng mới từ SorDecor", content);
+                    new MailHelper().SendMail(toEmail, "Đơn hàng mới từ SorDecor", content);
+
+
+                    return RedirectToAction("ConfirmOrder", "Order");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
+
         }
 
         public ActionResult ConfirmOrder()
