@@ -1,0 +1,61 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "7484ad1f-bd84-48b7-9fb0-2598ba9b4cd3": {
+      "ProjectGuid": "7484ad1f-bd84-48b7-9fb0-2598ba9b4cd3",
+      "DisplayName": "WebDecor",
+      "ColorIndex": 0
+    },
+    "8e0d79d4-b5ab-44e1-903a-8fe0c8a0f56e": {
+      "ProjectGuid": "8e0d79d4-b5ab-44e1-903a-8fe0c8a0f56e",
+      "DisplayName": "TestSorDecorWeb-MVC",
+      "ColorIndex": 1
+    },
+    "252dbcd0-41a2-4185-80d8-1bcc39661c91": {
+      "ProjectGuid": "252dbcd0-41a2-4185-80d8-1bcc39661c91",
+      "DisplayName": "TestSorDecorWeb",
+      "ColorIndex": 2
+    },
+    "2607b366-d67e-49ce-8b03-0dc979749d2c": {
+      "ProjectGuid": "2607b366-d67e-49ce-8b03-0dc979749d2c",
+      "DisplayName": "WebDecorTests",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "6e515069-6062-44f0-afed-c1624f24cd5b": {
+      "ProjectGuid": "6e515069-6062-44f0-afed-c1624f24cd5b",
+      "DisplayName": "WebDecorTests1",
+      "ColorIndex": 4
+    },
+    "03a6fdae-a870-4db7-bcd3-872ca7bcb349": {
+      "ProjectGuid": "03a6fdae-a870-4db7-bcd3-872ca7bcb349",
+      "DisplayName": "TestSorDercorWeb",
+      "ColorIndex": 5
+    },
+    "4308bc7a-6135-4fd3-86d9-ca27ff952903": {
+      "ProjectGuid": "4308bc7a-6135-4fd3-86d9-ca27ff952903",
+      "DisplayName": "WebDecor.UnitTest",
+      "ColorIndex": 6
+    },
+    "7e5b8787-a1bb-4d0d-86b8-39bd2ecb5fc0": {
+      "ProjectGuid": "7e5b8787-a1bb-4d0d-86b8-39bd2ecb5fc0",
+      "DisplayName": "WebDecorTests3",
+      "ColorIndex": 7
+    },
+    "b118e990-5498-4eb1-93c8-50425d97c671": {
+      "ProjectGuid": "b118e990-5498-4eb1-93c8-50425d97c671",
+      "DisplayName": "SorDecorWeb-MVC.NUnit.UnitTests",
+      "ColorIndex": 8
+    },
+    "c2712db2-ec75-4a7e-9e8e-ef2f43a1168b": {
+      "ProjectGuid": "c2712db2-ec75-4a7e-9e8e-ef2f43a1168b",
+      "DisplayName": "WebDecor.NUnit.Test",
+      "ColorIndex": 9
+    }
+  },
+  "NextColorIndex": 10
+}

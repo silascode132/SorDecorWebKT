@@ -60,6 +60,7 @@ namespace WebDecor.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Product product, CategoryModel model, HttpPostedFileBase file)
         {
+            
             data = new SorDbContext();
             var Name = model.productName;
             var Made = model.made;

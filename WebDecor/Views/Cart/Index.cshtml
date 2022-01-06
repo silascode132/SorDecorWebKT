@@ -82,7 +82,10 @@
 
                                         <td class="cart__quantity">
                                             <div class="pro-qty">
-                                                <input type="text" name="SL@(item.Product.ID)" value="@item.SL">
+                                                <input type="text"
+                                                       name="SL@(item.Product.ID)"
+                                                       value="@item.SL"
+                                                       onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" />
                                             </div>
                                         </td>
                                         <td class="cart__total">

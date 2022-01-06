@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31410.357
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDecor", "WebDecor\WebDecor.csproj", "{7484AD1F-BD84-48B7-9FB0-2598BA9B4CD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDecor.UnitTest", "WebDecorTests2\WebDecor.UnitTest.csproj", "{4308BC7A-6135-4FD3-86D9-CA27FF952903}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7484AD1F-BD84-48B7-9FB0-2598BA9B4CD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7484AD1F-BD84-48B7-9FB0-2598BA9B4CD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7484AD1F-BD84-48B7-9FB0-2598BA9B4CD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4308BC7A-6135-4FD3-86D9-CA27FF952903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4308BC7A-6135-4FD3-86D9-CA27FF952903}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4308BC7A-6135-4FD3-86D9-CA27FF952903}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4308BC7A-6135-4FD3-86D9-CA27FF952903}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

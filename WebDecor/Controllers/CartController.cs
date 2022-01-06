@@ -167,11 +167,14 @@ namespace WebDecor.Controllers
             foreach (var item in lst)
             {
                 string id = "SL" + item.ProductID; //Lấy collection ID
-                int sl = int.Parse(collection[id].ToString()); //Lấy số lượng người dùng nhập
-                if (sl == 0)
+         
+                var sl = Convert.ToInt32(collection[id].ToString()); //Lấy số lượng người dùng nhập
+
+                if (sl == 0 || sl.Equals(""))
                 {
                     var res = new CartItemModel().DeleteItem(item.ProductID, cart.ToString());  //Xóa item
-                }
+                } 
+              
                 else
                 {
                     string cartid = cart.ToString();

@@ -182,17 +182,7 @@ namespace WebDecor.Controllers
                     data.SaveChanges();
                     var update = new OrderDAO().UpdateSL(id);
 
-                    string content = System.IO.File.ReadAllText(Server.MapPath("~/Template/NewOrder.html"));
-
-                    content = content.Replace("{{CustomerName}}", orderBill.UserName);
-                    content = content.Replace("{{Phone}}", orderBill.Phone);
-                    content = content.Replace("{{Email}}", orderBill.Email);
-                    content = content.Replace("{{Address}}", orderBill.UserAddress);
-                    content = content.Replace("{{Total}}", total.ToString());
-                    var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
-
-                    new MailHelper().SendMail(orderBill.Email, "Đơn hàng mới từ SorDecor", content);
-                    new MailHelper().SendMail(toEmail, "Đơn hàng mới từ SorDecor", content);
+                    
 
 
                     return RedirectToAction("ConfirmOrder", "Order");

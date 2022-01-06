@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using WebDecor.Common;
 using WebDecor.DATA.DAO;
@@ -13,7 +11,9 @@ namespace WebDecor.Controllers
     {
         // GET: Profile
         private SorDbContext data = null;
+
         private const string UserID = "UserID";
+
         public ProfileController()
         {
             data = new SorDbContext();
@@ -78,8 +78,6 @@ namespace WebDecor.Controllers
                     acc.Sex = false;
                 }
             }
-                
-            
 
             if (collection["Address"] == "")
             {
@@ -138,7 +136,6 @@ namespace WebDecor.Controllers
                 data.SaveChanges();
                 return RedirectToAction("Index", "Profile");
             }
-
         }
 
         public ActionResult MyOrder(int page = 1, int pagesize = 10)
@@ -173,7 +170,6 @@ namespace WebDecor.Controllers
             return View(model);
         }
 
-        
         public ActionResult ChangedPass()
         {
             if (Session["UserID"] != null)
@@ -214,7 +210,6 @@ namespace WebDecor.Controllers
 
         public ActionResult Rate(string idProduct)
         {
-
             return View();
         }
     }

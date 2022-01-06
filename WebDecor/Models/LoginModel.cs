@@ -12,5 +12,6 @@ namespace WebDecor.Models
         public string userName { get; set; }
         [Required]
         public string passWord { get; set; }
+        public object UserController { get; set; }
     }
 }

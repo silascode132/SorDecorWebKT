@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Facebook;
+using System;
+using System.Configuration;
 using System.Linq;
-using System.Web;
+using System.Text;
 using System.Web.Mvc;
-using System.Web.Security;
 using WebDecor.Code;
 using WebDecor.Common;
 using WebDecor.DATA.DAO;
 using WebDecor.DATA.EF;
 using WebDecor.DBContext;
 using WebDecor.Models;
-using System.Data.Entity;
-using Facebook;
-using System.Configuration;
-using System.Text;
 
 namespace WebDecor.Controllers
 {
     public class UserController : Controller
     {
-
         private SorDbContext context = null;
+
         private Uri RedirectUri
         {
             get
@@ -32,7 +28,6 @@ namespace WebDecor.Controllers
                 return uriBuilder.Uri;
             }
         }
-
 
         [HttpGet]
         public ActionResult Login()
@@ -91,12 +86,12 @@ namespace WebDecor.Controllers
             return View();
         }
 
-
         [HttpGet]
         public ActionResult Register()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Register(RegisterModel model)
         {
@@ -115,7 +110,7 @@ namespace WebDecor.Controllers
             }
             else if (rePass.ToString() != pass.ToString())
             {
-                ViewData["ErrorRePass"] = "Sai mật khẩu!";
+                ViewData["ErrorRePass"] = "Mật khẩu nhập lại sai!";
             }
             else if (dao.CheckUserName(userName))
             {
@@ -178,6 +173,7 @@ namespace WebDecor.Controllers
 
             return Redirect(loginUrl.AbsoluteUri);
         }
+
         private string toUnsign(string str)
         {
             string stFormD = str.Normalize(NormalizationForm.FormD);
@@ -194,6 +190,7 @@ namespace WebDecor.Controllers
             sb = sb.Replace('đ', 'd');
             return (sb.ToString().Normalize(NormalizationForm.FormD));
         }
+
         private string swapToLowerCharac(string code)
         {
             char[] arr = code.ToCharArray();
@@ -206,9 +203,8 @@ namespace WebDecor.Controllers
             }
             string str = new string(arr);
             return str;
-
-
         }
+
         public ActionResult FacebookCallBack(string code)
         {
             var context = new SorDbContext();
@@ -242,7 +238,6 @@ namespace WebDecor.Controllers
                 {
                     userName = me.email;
                 }
-
 
                 var acc = new UserAccount();
                 acc.UserName = userName;
@@ -279,7 +274,6 @@ namespace WebDecor.Controllers
                     Session.Add(CommonConstants.USER_SESSION, userSession);
 
                     /*FormsAuthentication.SetAuthCookie(model.Email,model.RememberMe); */
-
                 }
                 if (result == 0)
                 {
@@ -299,6 +293,5 @@ namespace WebDecor.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-
     }
 }

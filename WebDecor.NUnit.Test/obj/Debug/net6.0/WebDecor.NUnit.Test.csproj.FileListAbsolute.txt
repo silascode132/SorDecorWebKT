@@ -1,0 +1,5 @@
+C:\Users\Admin\source\repos\SorDecorWeb-MVC\SorDecorWeb-MVC\WebDecor.NUnit.Test\obj\Debug\net6.0\WebDecor.NUnit.Test.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\SorDecorWeb-MVC\SorDecorWeb-MVC\WebDecor.NUnit.Test\obj\Debug\net6.0\WebDecor.NUnit.Test.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\SorDecorWeb-MVC\SorDecorWeb-MVC\WebDecor.NUnit.Test\obj\Debug\net6.0\WebDecor.NUnit.Test.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\SorDecorWeb-MVC\SorDecorWeb-MVC\WebDecor.NUnit.Test\obj\Debug\net6.0\WebDecor.NUnit.Test.AssemblyInfo.cs
+C:\Users\Admin\source\repos\SorDecorWeb-MVC\SorDecorWeb-MVC\WebDecor.NUnit.Test\obj\Debug\net6.0\WebDecor.NUnit.Test.csproj.CoreCompileInputs.cache
