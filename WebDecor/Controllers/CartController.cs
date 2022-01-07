@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using WebDecor.DATA.DAO;
 using WebDecor.DATA.EF;
@@ -11,7 +9,6 @@ namespace WebDecor.Controllers
 {
     public class CartController : Controller
     {
-        
         private const string CartItem = "CartItem";
         private SorDbContext data = null;
 
@@ -41,7 +38,6 @@ namespace WebDecor.Controllers
             return PartialView();
         }
 
-        
         private int TongSL()
         {
             data = new SorDbContext();
@@ -57,7 +53,6 @@ namespace WebDecor.Controllers
             {
                 tongSL = 0;
             }
-            
 
             //tongSL = product.Sum(x=>x.SL);
             return tongSL;
@@ -86,7 +81,6 @@ namespace WebDecor.Controllers
                 }
                 return Tong;
             }
-            
         }
 
         private decimal TongTien()
@@ -122,7 +116,7 @@ namespace WebDecor.Controllers
             if (cart != null)   // Kiểm tra người dùng đã đăng nhập chưa
             {
                 ItemInCart item = new ItemInCart();
-                
+
                 item.ID = "0";
                 item.ProductID = productId;
                 var price = data.Products.Where(x => x.ID == productId).FirstOrDefault().Price;
@@ -167,20 +161,25 @@ namespace WebDecor.Controllers
             foreach (var item in lst)
             {
                 string id = "SL" + item.ProductID; //Lấy collection ID
-         
-                var sl = Convert.ToInt32(collection[id].ToString()); //Lấy số lượng người dùng nhập
 
-                if (sl == 0 || sl.Equals(""))
+                string sl = Convert.ToString(collection[id].ToString());      //Lấy số lượng người dùng nhập
+
+                /* string sl = Convert.ToString(stringSL);*/
+
+                if (sl == "0")
                 {
                     var res = new CartItemModel().DeleteItem(item.ProductID, cart.ToString());  //Xóa item
-                } 
-              
+                }
+                else if (sl == "")
+                {
+                    var res = new CartItemModel().DeleteItem(item.ProductID, cart.ToString());
+                }
                 else
                 {
+                    int sl1 = Convert.ToInt32(sl);
                     string cartid = cart.ToString();
-                    bool res = dao.UpdateItem(item.ProductID, sl, cartid);
+                    bool res = dao.UpdateItem(item.ProductID, sl1, cartid);
                 }
-                
             }
             return RedirectToAction("Index", "Cart");
         }

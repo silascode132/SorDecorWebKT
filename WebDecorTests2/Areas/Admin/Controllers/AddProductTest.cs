@@ -28,7 +28,7 @@ namespace WebDecorTests2.Areas.Admin.Controllers
         public void Add_Product_Success()
         {
 
-            CategoryModel model = new CategoryModel();
+          
 
             Image img = Image.FromFile("D:\\aobaoho.png");
             byte[] bArr = imgToByteArray(img);
@@ -49,10 +49,8 @@ namespace WebDecorTests2.Areas.Admin.Controllers
                 DateUpdate = System.DateTime.Now
             };
 
-            
-
-            
-           
+          
+          
         }
     }
 }

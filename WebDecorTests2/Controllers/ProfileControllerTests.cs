@@ -9,7 +9,7 @@ namespace WebDecor.Controllers.Tests
 {
     [TestClass()]
     public class ProfileControllerTests
-    { 
+    {
         SorDbContext data = new SorDbContext();
         UserAccount acc = new UserAccount();
         UserAccount account = new UserAccount();
@@ -70,14 +70,14 @@ namespace WebDecor.Controllers.Tests
             {
                 UserAccount account = new UserAccount();
                 account = data.UserAccounts.Single(n => n.ID == "US00002");
-                
+
 
                 if (acc.Email == account.Email)
                 {
                     Assert.Fail("Địa chỉ Email đã tồn tại.");
                     Assert.Fail("Không cập nhật thông tin người dùng.");
                     Assert.IsNull(data.SaveChanges());
-                } 
+                }
             }
         }
 
@@ -121,7 +121,7 @@ namespace WebDecor.Controllers.Tests
                             account.Email = acc.Email;
                             Assert.Fail("Thông tin người dùng được cập nhật.");
                         }
-                    }              
+                    }
                 }
             }
         }
@@ -144,8 +144,231 @@ namespace WebDecor.Controllers.Tests
                 acc.Phone = "0123";
                 acc.Email = "ct123@gmail.com";
                 var dao = new UserDAO();
+                if (dao.CheckMail(acc.Email))
+                {
+                    UserAccount account = new UserAccount();
+                    account = data.UserAccounts.Single(n => n.ID == "US00002");
+                    if (acc.Email != account.Email)
+                    {
+                        if (acc.LastName == null || acc.LastName == "")
+                        {
+                            Assert.Fail("Vui lòng điền vào trường này.");
+                        }
+                        else
+                        {
+                            account = data.UserAccounts.Single(n => n.ID == "US00002");
+                            account.FirstName = acc.FirstName;
+                            account.LastName = acc.LastName;
+                            account.Birthday = acc.Birthday;
+                            account.Sex = acc.Sex;
+                            account.Diachi = acc.Diachi;
+                            account.Phone = acc.Phone;
+                            account.Email = acc.Email;
+                            Assert.Fail("Thông tin người dùng được cập nhật.");
+                        }
+                    }
+                }
+            }
+        }
 
-               
+        [TestMethod()]
+        public void Update_Information_When_Frist_And_Last_Name_Is_Blank()
+        {
+            {
+                SorDbContext data = new SorDbContext();
+                UserAccount acc = new UserAccount();
+                acc.FirstName = "";
+                acc.LastName = "";
+                int day = 13;
+                int month = 2;
+                int year = 2000;
+                DateTime dt = DateTime.Parse(month + "/" + day + "/" + year);
+                acc.Birthday = dt;
+                acc.Sex = true;
+                acc.Diachi = "Gia Lai";
+                acc.Phone = "0123";
+                acc.Email = "ct123@gmail.com";
+                var dao = new UserDAO();
+                if (dao.CheckMail(acc.Email))
+                {
+                    UserAccount account = new UserAccount();
+                    account = data.UserAccounts.Single(n => n.ID == "US00002");
+                    if (acc.Email != account.Email)
+                    {
+                        if (acc.LastName == null || acc.LastName == "" && acc.FirstName == null || acc.FirstName == "")
+                        {
+                            Assert.Fail("Vui lòng điền vào trường này.");
+                        }
+                        else
+                        {
+                            account = data.UserAccounts.Single(n => n.ID == "US00002");
+                            account.FirstName = acc.FirstName;
+                            account.LastName = acc.LastName;
+                            account.Birthday = acc.Birthday;
+                            account.Sex = acc.Sex;
+                            account.Diachi = acc.Diachi;
+                            account.Phone = acc.Phone;
+                            account.Email = acc.Email;
+                            Assert.Fail("Thông tin người dùng được cập nhật.");
+                        }
+                    }
+                }
+            }
+        }
+
+        [TestMethod()]
+        public void Update_Information_When_Birthday_Is_Blank()
+        {
+            {
+                SorDbContext data = new SorDbContext();
+                UserAccount acc = new UserAccount();
+                acc.FirstName = "Tran";
+                acc.LastName = "Cong Thang";
+                int day = 13;
+                int month = 2;
+                int year = 2000;
+                DateTime dt = DateTime.Parse(month + "/" + day + "/" + year);
+                acc.Birthday = null;
+                acc.Sex = true;
+                acc.Diachi = "Gia Lai";
+                acc.Phone = "0123";
+                acc.Email = "ct123@gmail.com";
+                var dao = new UserDAO();
+                if (dao.CheckMail(acc.Email))
+                {
+                    account = data.UserAccounts.Single(n => n.ID == "US00002");
+                    if (acc.Email != account.Email)
+                    {
+                        account = data.UserAccounts.Single(n => n.ID == "US00002");
+                        account.FirstName = acc.FirstName;
+                        account.LastName = acc.LastName;
+                        account.Birthday = acc.Birthday;
+                        account.Sex = acc.Sex;
+                        account.Diachi = acc.Diachi;
+                        account.Phone = acc.Phone;
+                        account.Email = acc.Email;
+
+                        Assert.IsNotNull(data.SaveChanges());
+                        Assert.Fail("Thông tin người dùng được cập nhật.");
+                    }
+                }
+            }
+        }
+
+        [TestMethod()]
+        public void Update_Information_When_Day_Is_Blank()
+        {
+            {
+                SorDbContext data = new SorDbContext();
+                UserAccount acc = new UserAccount();
+                acc.FirstName = "Tran";
+                acc.LastName = "Cong Thang";
+                int day = 01;
+                int month = 2;
+                int year = 2000;
+                DateTime dt = DateTime.Parse(month + "/" + day + "/" + year);
+                acc.Birthday = dt;
+                acc.Sex = true;
+                acc.Diachi = "Gia Lai";
+                acc.Phone = "0123";
+                acc.Email = "ct123@gmail.com";
+                var dao = new UserDAO();
+                if (dao.CheckMail(acc.Email))
+                {
+                    account = data.UserAccounts.Single(n => n.ID == "US00002");
+                    if (acc.Email != account.Email)
+                    {
+                        account = data.UserAccounts.Single(n => n.ID == "US00002");
+                        account.FirstName = acc.FirstName;
+                        account.LastName = acc.LastName;
+                        account.Birthday = acc.Birthday;
+                        account.Sex = acc.Sex;
+                        account.Diachi = acc.Diachi;
+                        account.Phone = acc.Phone;
+                        account.Email = acc.Email;
+
+                        Assert.IsNotNull(data.SaveChanges());
+                        Assert.Fail("Thông tin người dùng được cập nhật.");
+                    }
+                }
+            }
+        }
+
+        [TestMethod()]
+        public void Update_Information_When_Month_Is_Blank()
+        {
+            {
+                SorDbContext data = new SorDbContext();
+                UserAccount acc = new UserAccount();
+                acc.FirstName = "Tran";
+                acc.LastName = "Cong Thang";
+                int day = 13;
+                int month = 02;
+                int year = 2000;
+                DateTime dt = DateTime.Parse(month + "/" + day + "/" + year);
+                acc.Birthday = dt;
+                acc.Sex = true;
+                acc.Diachi = "Gia Lai";
+                acc.Phone = "0123";
+                acc.Email = "ct123@gmail.com";
+                var dao = new UserDAO();
+                if (dao.CheckMail(acc.Email))
+                {
+                    account = data.UserAccounts.Single(n => n.ID == "US00002");
+                    if (acc.Email != account.Email)
+                    {
+                        account = data.UserAccounts.Single(n => n.ID == "US00002");
+                        account.FirstName = acc.FirstName;
+                        account.LastName = acc.LastName;
+                        account.Birthday = acc.Birthday;
+                        account.Sex = acc.Sex;
+                        account.Diachi = acc.Diachi;
+                        account.Phone = acc.Phone;
+                        account.Email = acc.Email;
+
+                        Assert.IsNotNull(data.SaveChanges());
+                        Assert.Fail("Thông tin người dùng được cập nhật.");
+                    }
+                }
+            }
+        }
+
+        [TestMethod()]
+        public void Update_Information_When_Year_Is_Blank()
+        {
+            {
+                SorDbContext data = new SorDbContext();
+                UserAccount acc = new UserAccount();
+                acc.FirstName = "Tran";
+                acc.LastName = "Cong Thang";
+                int day = 13;
+                int month = 2;
+                int year = 0;
+                DateTime dt = DateTime.Parse(month + "/" + day + "/" + year);
+                acc.Birthday = dt;
+                acc.Sex = true;
+                acc.Diachi = "Gia Lai";
+                acc.Phone = "0123";
+                acc.Email = "ct123@gmail.com";
+                var dao = new UserDAO();
+                if (dao.CheckMail(acc.Email))
+                {
+                    account = data.UserAccounts.Single(n => n.ID == "US00002");
+                    if (acc.Email != account.Email)
+                    {
+                        account = data.UserAccounts.Single(n => n.ID == "US00002");
+                        account.FirstName = acc.FirstName;
+                        account.LastName = acc.LastName;
+                        account.Birthday = acc.Birthday;
+                        account.Sex = acc.Sex;
+                        account.Diachi = acc.Diachi;
+                        account.Phone = acc.Phone;
+                        account.Email = acc.Email;
+
+                        Assert.IsNotNull(data.SaveChanges());
+                        Assert.Fail("Thông tin người dùng được cập nhật.");
+                    }
+                }
             }
         }
     }
